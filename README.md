@@ -1,4 +1,4 @@
-# **Schedulo** - The Schedule Management Tool For Android
+# Schedulo - The Schedule Management Tool For Android
 ## For ...
 It is for anyone who is busy and need to organize their schedules easily and quickly.
 
