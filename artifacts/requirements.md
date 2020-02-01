@@ -8,8 +8,7 @@
 | 003 | 001 | The database should be secure | Not Started |
 | 004 | 001 | The app should be able to add new entries to the database | Not Started |
 | 005 | 001 | The app should be able to verify account information | Not Started |
-| 006 | 002 | The app should be able to open a private message board | Not Started |
-| 007 | 002 | The app should be able to control who has access to the message board| Not Started |
-| 008 | 003 | The app should be able to display a weekly calendar | Not Started |
-| 009 | 003 | The app should be able to add events to the calendar | Not Started |
-| 010 | 004 | The app should be able to upload calendars to the message board | Not Started |
+| 008 | 002 | The app should be able to display a weekly calendar | Not Started |
+| 009 | 002 | The app should be able to add events to the calendar | Not Started |
+| 006 | 003 | The app should be able to communicate with other instances of the app | Not Started |
+| 007 | 003 | The app should be able to make calendars visible to other instances of the app | Not Started |
