@@ -21,7 +21,7 @@ import java.util.Map;
 
 
 public class Login extends AppCompatActivity {
-    private static final String SERVER_URL = "hypotheticalurl";
+    private static final String SERVER_URL = "http://localhost:7000/login";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +75,8 @@ public class Login extends AppCompatActivity {
                     @Override
                     protected Map<String, String> getParams() {
                         Map<String, String> params = new HashMap<String, String>();
-                        params.put(inputPhone, userString);
+                        params.put("username", inputPhone);
+                        params.put("password", inputPass);
 
                         return params;
                     }
