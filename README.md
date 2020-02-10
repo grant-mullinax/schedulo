@@ -15,7 +15,7 @@ Server Component Diagram https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyj
 
 Server Code Diagram https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU
 
-App Diagram https://www.draw.io/#G1zyHTIp4E-FNDz74t7hGLCSr7tqRyfdVK
+App Component Diagram https://drive.google.com/file/d/1DO-DUoxMLjF8pbk0AvU4kWtS_g_s_NIv/view?usp=sharing
 
 ## Vision Statement
 ### For ...
