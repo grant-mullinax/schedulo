@@ -1,25 +1,5 @@
 # Schedulo - The Schedule Management Tool For Android
 
-## Class Diagram / Product Backlog / Requirements / Sprint Backlogs / Burndown Chart / Velocity Chart
-[Google Sheets](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
-
-## Trello Board
-[Trello](https://trello.com/b/9H7LNIEr/schedule-project)
-
-## Architecture
-[Context Diagram](https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc)
-
-[Container Diagram](https://docs.google.com/drawings/d/1O8AHw3tQyJEcRltbBX12G2N6gbYTFzO9zbenqoTwZh8)
-
-[Server Component Diagram](https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyja2nvQJq-PtxW0XzPFU0ym2aA)
-
-[Server Code Diagram](https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU)
-
-[App Component Diagram](https://drive.google.com/file/d/1DO-DUoxMLjF8pbk0AvU4kWtS_g_s_NIv/view?usp=sharing)
-
-## App Demo
-[YouTube](https://www.youtube.com/watch?v=OU8_D61vIxg&feature=youtu.be)
-
 ## Vision Statement
 ### For ...
 It is for anyone who is busy and need to organize their schedules easily and quickly.
@@ -35,3 +15,23 @@ That leads to faster coordination and event planning for groups with busy schedu
 
 ### Unlike the ... / Our product offers ...
 Unlike the other paid scheduling apps, like HotSchedules, our product is free and offers generic utility outside of the workplace, by allowing users to schedule time with friends or for appointments, or in the workplace, by allowing users to check when they're scheduled or to switch shifts with thier coworkers.
+
+
+## Sprint 1
+* [Product Backlog / Sprint Backlog / Requirements](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+* [Trello Board](https://trello.com/b/9H7LNIEr/schedule-project)
+* [Burndown Chart / Velocity Chart](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+
+## Sprint 2
+* [Product Backlog / Sprint Backlog / Requirements](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+* [Trello Board](https://trello.com/b/9H7LNIEr/schedule-project)
+* [Burndown Chart / Velocity Chart](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+* Design Documents
+    * [Context Diagram](https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc)
+    * [Container Diagram](https://docs.google.com/drawings/d/1O8AHw3tQyJEcRltbBX12G2N6gbYTFzO9zbenqoTwZh8)
+    * [Server Component Diagram](https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyja2nvQJq-PtxW0XzPFU0ym2aA)
+    * [Server Code Diagram](https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU)
+    * [App Component Diagram](https://drive.google.com/file/d/1DO-DUoxMLjF8pbk0AvU4kWtS_g_s_NIv/view?usp=sharing)
+* [Demonstration](https://www.youtube.com/watch?v=OU8_D61vIxg&feature=youtu.be)
+
+## Sprint 3
