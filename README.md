@@ -15,6 +15,8 @@ Server Component Diagram https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyj
 
 Server Code Diagram https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU
 
+App Diagram https://www.draw.io/#G1zyHTIp4E-FNDz74t7hGLCSr7tqRyfdVK
+
 ## Vision Statement
 ### For ...
 It is for anyone who is busy and need to organize their schedules easily and quickly.
