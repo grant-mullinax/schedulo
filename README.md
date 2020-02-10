@@ -6,6 +6,9 @@ https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj
 ## Trello Board
 https://trello.com/b/9H7LNIEr/schedule-project
 
+## Architecture
+https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc
+
 ## Vision Statement
 ### For ...
 It is for anyone who is busy and need to organize their schedules easily and quickly.
