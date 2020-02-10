@@ -8,8 +8,11 @@ https://trello.com/b/9H7LNIEr/schedule-project
 
 ## Architecture
 Context Diagram https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc
+
 Container Diagram https://docs.google.com/drawings/d/1O8AHw3tQyJEcRltbBX12G2N6gbYTFzO9zbenqoTwZh8
+
 Server Component Diagram https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyja2nvQJq-PtxW0XzPFU0ym2aA
+
 Server Code Diagram https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU
 
 ## Vision Statement
