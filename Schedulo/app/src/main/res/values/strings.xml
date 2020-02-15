@@ -5,4 +5,5 @@
     <string name="button_login">Log In</string>
     <string name="input_name">Name</string>
     <string name="button_register">Register</string>
+    <string name="register_prompt">Don\'t have an account?</string>
 </resources>
