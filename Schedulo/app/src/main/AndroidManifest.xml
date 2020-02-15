@@ -10,27 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Register"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".Login">
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".MainActivity">
-=======
-=======
->>>>>>> d3b59a0b3cc8a52ce22caa59023e6d21b431b081
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-<<<<<<< HEAD
->>>>>>> d3b59a0b3cc8a52ce22caa59023e6d21b431b081
-=======
->>>>>>> d3b59a0b3cc8a52ce22caa59023e6d21b431b081
+        </activity>
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
