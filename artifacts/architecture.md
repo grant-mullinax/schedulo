@@ -8,6 +8,8 @@
 
 # User Interface Design
 
+![alt text](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/User%20Interface.png)
+
 # Resource Management
 
 # Security
