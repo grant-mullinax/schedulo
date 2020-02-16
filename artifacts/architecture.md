@@ -33,7 +33,7 @@
 # Build-vs-Buy Decisions
 
 * GSON
-    For serializing login info to JSON format and communicating with the server
+    * For serializing login info to JSON format and communicating with the server
 * Volley
 
 # Reuse
