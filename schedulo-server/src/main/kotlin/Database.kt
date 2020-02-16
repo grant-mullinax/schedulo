@@ -1,56 +1,50 @@
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.SQLException
+import org.mindrot.jbcrypt.BCrypt
+import java.sql.*
 import kotlin.random.Random
 
 object Database {
-    private var connection: Connection? = null
+    // TODO SWITCH TO PREPARED STATEMENTS TO PREVENT SQL INJECTION
 
-    fun getUser(username: String): User? {
-        connection = DriverManager.getConnection("jdbc:sqlite:schedulo.db")
+    private fun <T> managedStatement(
+        statementCall: (Statement) -> T
+    ): T {
+        val connection = DriverManager.getConnection("jdbc:sqlite:schedulo.db")
 
         try {
-            val sqlStatement = connection!!.createStatement()
-            sqlStatement.queryTimeout = 30  // set timeout to 30 sec.
-            val rs = sqlStatement.executeQuery("select * FROM person WHERE Username = '$username';")
-
-            return User(rs.getString("Username"), rs.getString("Password"))
+            val sqlStatement = connection.createStatement()
+            sqlStatement.queryTimeout = 30
+            return statementCall(sqlStatement)
         } catch (e: SQLException) {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
+            System.err.println("DATABASE ERROR:")
             System.err.println(e.message)
+            throw HttpErrorResponseException(404, "Database Error")
         } finally {
             try {
-                connection?.close()
+                connection.close()
             } catch (e: SQLException) {
-                // connection close failed.
+                System.err.println("FAILED TO CLOSE CONNECTION:")
                 System.err.println(e.message)
+                throw HttpErrorResponseException(404, "Database Error")
             }
-
         }
-        return null
     }
 
-    fun executeUpdate(statement: String) {
-        connection = DriverManager.getConnection("jdbc:sqlite:schedulo.db")
+    private fun <T> managedQuery(query: String, transformation: (ResultSet) -> T): T {
+        return managedStatement { s -> transformation(s.executeQuery(query)) }
+    }
 
-        try {
-            val sqlStatement = connection!!.createStatement()
-            sqlStatement.queryTimeout = 30  // set timeout to 30 sec.
-            sqlStatement.executeUpdate(statement)
+    private fun managedUpdate(update: String): Int {
+        return managedStatement { s -> s.executeUpdate(update)}
+    }
 
-        } catch (e: SQLException) {
-            // if the error message is "out of memory",
-            // it probably means no database file is found
-            System.err.println(e.message)
-        } finally {
-            try {
-                connection?.close()
-            } catch (e: SQLException) {
-                // connection close failed.
-                System.err.println(e.message)
-            }
+    fun getUser(username: String): User {
+        return managedQuery(
+            "select * FROM person WHERE Username = '$username';"
+        ) { rs -> User(rs.getString("Username"), rs.getString("Password"))}
+    }
 
-        }
+    fun registerUser(username: String, password: String) {
+        val hashed = BCrypt.hashpw(password, BCrypt.gensalt())
+        managedUpdate("insert into person values(${Random.nextInt()}, '$username', '$hashed')")
     }
 }

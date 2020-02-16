@@ -1,38 +1,20 @@
 import io.javalin.http.Context
-import io.javalin.http.Handler
 import org.mindrot.jbcrypt.BCrypt
-import kotlin.random.Random
 
 data class User(val username: String, val password: String)
 
 object UserManager {
+    fun login(username: String, password: String): Boolean {
+        val user = Database.getUser(username)
 
-    fun login(ctx: Context) {
-        print("logging in")
-        // SQL INJECTION !!! THIS IS TESTING CODE
-
-        val username = ctx.formParam("username")
-        val password = ctx.formParam("password")
-
-        val user = Database.getUser(username!!)
-
-        if (BCrypt.checkpw(password, user!!.password))
-            ctx.status(200)
+        if (BCrypt.checkpw(password, user.password))
+            return true
         else
-            ctx.status(403)
+            throw HttpErrorResponseException(403, "Wrong password")
     }
 
-    fun register(ctx: Context) {
-        print("registering")
-        // SQL INJECTION !!! THIS IS TESTING CODE
-
-        val username = ctx.formParam("username")
-        val password = ctx.formParam("password")
-
-        val hashed = BCrypt.hashpw(password, BCrypt.gensalt())
-
-        Database.executeUpdate("insert into person values(${Random.nextInt()}, '$username', '$hashed')")
-
-        ctx.status(200)
+    fun register(username: String, password: String): Boolean {
+        Database.registerUser(username, password)
+        return true
     }
 }
