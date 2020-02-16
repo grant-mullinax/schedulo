@@ -11,8 +11,8 @@ fun main(args: Array<String>) {
         val statement = connection!!.createStatement()
         statement.queryTimeout = 30  // set timeout to 30 sec.
 
-        statement.executeUpdate("drop table if exists person")
-        statement.executeUpdate("create table person (id integer, Username text, Password text)")
+        statement.executeUpdate("drop table if exists user")
+        statement.executeUpdate("create table user (id integer, Username text, Password text)")
     } catch (e: SQLException) {
         // if the error message is "out of memory",
         // it probably means no database file is found
@@ -24,6 +24,5 @@ fun main(args: Array<String>) {
             // connection close failed.
             System.err.println(e.message)
         }
-
     }
 }

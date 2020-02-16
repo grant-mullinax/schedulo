@@ -39,12 +39,12 @@ object Database {
 
     fun getUser(username: String): User {
         return managedQuery(
-            "select * FROM person WHERE Username = '$username';"
+            "select * FROM user WHERE Username = '$username';"
         ) { rs -> User(rs.getString("Username"), rs.getString("Password"))}
     }
 
     fun registerUser(username: String, password: String) {
         val hashed = BCrypt.hashpw(password, BCrypt.gensalt())
-        managedUpdate("insert into person values(${Random.nextInt()}, '$username', '$hashed')")
+        managedUpdate("insert into user values(${Random.nextInt()}, '$username', '$hashed')")
     }
 }
