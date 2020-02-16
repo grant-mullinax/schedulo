@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_EDIT);
         intent.setType("vnd.android.cursor.item/event");
         intent.putExtra("beginTime", calendarEvent.getTimeInMillis());
+        intent.putExtra("endTime", calendarEvent.getTimeInMillis() + 60 * 60 * 1000);
         intent.putExtra("allDay", true);
         intent.putExtra("rule", "FREQ=YEARLY");
-        intent.putExtra("endTime", calendarEvent.getTimeInMillis() + 60 * 60 * 1000);
         intent.putExtra("title", "Calendar Event");
         startActivity(intent);
     }
