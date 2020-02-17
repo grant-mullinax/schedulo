@@ -17,12 +17,16 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import org.json.JSONObject;
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class Login extends AppCompatActivity {
-    private static final String SERVER_URL = "http://localhost:7000/login";
+    private static final String SERVER_URL = "http://localhost:7000";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +37,38 @@ public class Login extends AppCompatActivity {
         EditText getPhone = findViewById(R.id.number);
         EditText getPass = findViewById(R.id.password);
 
-        String inputPhone = getPhone.getText().toString();
-        String inputPass = getPass.getText().toString();
+        final String inputPhone = getPhone.getText().toString();
+        final String inputPass = getPass.getText().toString();
 
-        // TODO: Verify log in
-        // TODO: If false, display log in failure message
-        // TODO: If true, proceed to app activity
+        final String loginURL = SERVER_URL + "/login";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest getRequest = new StringRequest(Request.Method.GET, loginURL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // action
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        Login.this.startActivity(intent);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // action
+                        TextView textView = findViewById(R.id.textView3);
+                        textView.setText("Invalid username or password.");
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", inputPhone);
+                params.put("password", inputPass);
+
+                return params;
+            }
+        };
+        queue.add(getRequest);
     }
 
     public void registerUser(View view) {
@@ -59,29 +89,32 @@ public class Login extends AppCompatActivity {
         // Post to server
         final TextView textView = findViewById(R.id.textView);
         RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
+        final String registerURL = SERVER_URL + "/register";
+        StringRequest postRequest = new StringRequest(Request.Method.POST, registerURL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        textView.setText("Welcome, " + inputName + "!");
+                        System.out.println("\n\nSUCCESS\n\n" + response);
+                        Intent intent = new Intent(Login.this, MainActivity.class);
+                        Login.this.startActivity(intent);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        System.out.println("\n\nERROR\n\n" + error.toString());
                         textView.setText("Could not complete request at this time.");
                     }
-                })
-                {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<String, String>();
-                        params.put("username", inputPhone);
-                        params.put("password", inputPass);
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", inputPhone);
+                params.put("password", inputPass);
 
-                        return params;
-                    }
-                };
+                return params;
+            }
+        };
         queue.add(postRequest);
     }
 
