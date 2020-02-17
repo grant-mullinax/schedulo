@@ -33,6 +33,8 @@ On the event add screen, the user will be able to input the start time of their 
 
 # Internationalization/Localization
 
+Since scheduling is a global need, Internationalization isn't a problem. Adding support for other languages is doable.
+
 # Input/Output
 
 # Error Processing
