@@ -11,7 +11,7 @@ Can be found in the readme
 
 # User Interface Design
 
-![alt text](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/User%20Interface.png)
+![alt text](/artifacts/User%20Interface.png)
 
 When the user opens the app, they will see a screen asking for their log in information, as well as a button to log in once the information is entered and a button to register if they do not have an account yet.
 On the register screen, the user is asked for their name, phone number, and password. The phone number and password will be their log in information.
