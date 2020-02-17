@@ -1,8 +1,11 @@
 # Program Organization
+Can be found in the readme
 
 # Major Classes
+Can be found in the readme
 
 # Data Design
+Can be found in the readme
 
 # Business Rules
 
@@ -19,6 +22,8 @@ On the event add screen, the user will be able to input the start time of their 
 # Resource Management
 
 # Security
+* Server is HTTPS enabled and passwords are set up in plaintext
+* Passwords are hashed with bcrypt in the database
 
 # Performance
 
@@ -39,10 +44,17 @@ On the event add screen, the user will be able to input the start time of their 
 # Overengineering
 
 # Build-vs-Buy Decisions
-
+## Client
 * GSON
     * For serializing login info to JSON format and communicating with the server
 * Volley
+## Server
+* Javalin
+   * Http server
+* Sqllite-jdbc
+   * Mysql database wrapper
+* Jbcrypt
+   * Hashes passwords in the db
 
 # Reuse
 
