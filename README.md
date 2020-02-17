@@ -39,4 +39,4 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [App](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/main/java/com/example/schedulo)
     * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
 * Automated Tests
-* [Demonstration]
+* [Demonstration](https://www.youtube.com/watch?v=iVLPHW1K6Hg)
