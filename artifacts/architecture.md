@@ -1,11 +1,18 @@
 # Program Organization
 ![alt text](/artifacts/Schedulo%20Architecture%20Context%20Diagram.png)
+We need a description here
 
 # Major Classes
-TODO
+It should identify
+the responsibilities of each major class and how the class will interact with
+other classes. It should include descriptions of the class hierarchies, of state
+transitions, and of object persistence. If the system is large enough, it should
+describe how classes are organized into subsystems.
 
 # Data Design
-TODO
+should describe the major files and table designs to be used.
+It should describe alternatives that were considered and justify the choices
+that were made.
 
 # Business Rules
 Schedulo is not bound by any rules that impact the system's design.
@@ -54,8 +61,16 @@ Since scheduling is a global need, Internationalization isn't a problem. Adding 
 	* Calendar with event information
 
 # Error Processing
+Error handling is often treated as a coding-convention-level issue, if it's
+treated at all. But because it has systemwide implications, it is best treated at
+the architectural level.
+Examples in Code Complete excerpt Dr. H posted
 
 # Fault Tolerance
+Fault tolerance is a collection of techniques that increase a system's reliability
+by detecting errors, recovering from them if possible, and containing their bad
+effects if not.
+Examples in Code Complete excerpt Dr. H posted
 
 # Architectural Feasibility
 Feasibility can be tested through the virtual Android device that Android Studio provides for testing.
