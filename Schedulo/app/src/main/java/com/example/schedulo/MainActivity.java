@@ -25,4 +25,9 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("title", "Calendar Event");
         startActivity(intent);
     }
+
+    public void LogOut(View view) {
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        MainActivity.this.startActivity(intent);
+    }
 }

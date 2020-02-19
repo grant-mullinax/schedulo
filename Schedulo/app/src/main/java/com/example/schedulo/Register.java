@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
+
     private static final String SERVER_URL = "http://localhost:7000/register";
 
     @Override

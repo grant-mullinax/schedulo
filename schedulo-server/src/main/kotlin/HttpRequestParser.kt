@@ -6,10 +6,13 @@ object HttpRequestParser {
 
     fun login(ctx: Context) {
         try {
-            val username = ctx.formParam("username") ?: throw HttpErrorResponseException(400, "Missing username")
-            val password = ctx.formParam("password") ?: throw HttpErrorResponseException(400, "Missing password")
+            val a = ctx.formParam("username")
+            val b = ctx.formParam("password")
+            val username = (a ?: throw HttpErrorResponseException(400, "Missing username"))
+            val password = (b ?: throw HttpErrorResponseException(400, "Missing password"))
 
             UserManager.login(username, password)
+            ctx.result("logged in")
         } catch (e: HttpErrorResponseException) {
             ctx.status(e.code)
         }
@@ -17,9 +20,10 @@ object HttpRequestParser {
 
     fun register(ctx: Context) {
         try {
-            val username = ctx.formParam("username") ?: throw HttpErrorResponseException(400, "Missing username")
-            val password = ctx.formParam("password") ?: throw HttpErrorResponseException(400, "Missing password")
-
+            val a = ctx.formParam("username")
+            val b = ctx.formParam("password")
+            val username = (a ?: throw HttpErrorResponseException(400, "Missing username"))
+            val password = (b ?: throw HttpErrorResponseException(400, "Missing password"))
             UserManager.register(username, password)
         } catch (e: HttpErrorResponseException) {
             ctx.status(e.code)

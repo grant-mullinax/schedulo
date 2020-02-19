@@ -25,6 +25,7 @@ import java.util.Map;
 
 
 public class Login extends AppCompatActivity {
+
     private static final String SERVER_URL = "http://localhost:7000/login";
 
     @Override
@@ -54,6 +55,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // action
+                        System.out.println("\n\nERROR\n\n" + error.toString());
                         TextView textView = findViewById(R.id.textView3);
                         textView.setText("Invalid username or password.");
                     }
