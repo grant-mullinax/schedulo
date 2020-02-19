@@ -8,7 +8,7 @@
     android:paddingTop="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="16dp"
-    tools:context=".Login">
+    tools:context=".Register">
 
     <EditText
         android:id="@+id/name"
@@ -62,8 +62,9 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="48dp"
-        android:onClick="registerUser"
         android:text="@string/button_register"
+        android:enabled="true"
+        android:onClick="registerUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />

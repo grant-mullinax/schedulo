@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    private static final String SERVER_URL = "http://localhost:7000";
+    private static final String SERVER_URL = "http://localhost:7000/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +46,7 @@ public class Register extends AppCompatActivity {
         // Post to server
         final TextView textView = findViewById(R.id.textView);
         RequestQueue queue = Volley.newRequestQueue(this);
-        final String registerURL = SERVER_URL + "/register";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, registerURL,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
