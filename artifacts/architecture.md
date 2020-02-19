@@ -1,13 +1,14 @@
 # Program Organization
-Can be found in the readme
+![alt text](/artifacts/Schedulo%20Architecture%20Context%20Diagram.png)
 
 # Major Classes
-Can be found in the readme
+TODO
 
 # Data Design
-Can be found in the readme
+TODO
 
 # Business Rules
+Schedulo is not bound by any rules that impact the system's design.
 
 # User Interface Design
 
@@ -20,30 +21,47 @@ On the hourly view, the user will see the hours of the day on the left, with the
 On the event add screen, the user will be able to input the start time of their event, followed by the end time, and finally a check if it's all day.
 
 # Resource Management
+The architecture should describe a plan for managing scarce resources such as
+database connections, threads, and handles. Memory management is another
+important area for the architecture to treat in memory-constrained
+applications areas such as driver development and embedded systems.
 
 # Security
 * Server is HTTPS enabled and passwords are set up in plaintext
 * Passwords are hashed with bcrypt in the database
 
 # Performance
+The architecture should provide estimates and explain why the architects
+believe the performance goals are achievable. 
 
 # Scalability
+We have no plans to expand the size of this project after its completion for this class.
 
 # Interoperability
+If the system is expected to share data or resources with other software or
+hardware, the architecture should describe how that will be accomplished.
 
 # Internationalization/Localization
 
 Since scheduling is a global need, Internationalization isn't a problem. Adding support for other languages is doable.
 
 # Input/Output
+* Input
+	* Log in information
+	* Event dates and times
+
+* Output
+	* Calendar with event information
 
 # Error Processing
 
 # Fault Tolerance
 
 # Architectural Feasibility
+Feasibility can be tested through the virtual Android device that Android Studio provides for testing.
 
 # Overengineering
+Pretty much how we avoid overengineering
 
 # Build-vs-Buy Decisions
 ## Client
@@ -59,5 +77,7 @@ Since scheduling is a global need, Internationalization isn't a problem. Adding 
    * Hashes passwords in the db
 
 # Reuse
+All preexisting software that is used is listed in the Build-vs-Buy section. Everything else is being made by the team.
 
 # Change Strategy
+Changes are handled by using GitHub to track any and all changes that occur during the weekly development.
