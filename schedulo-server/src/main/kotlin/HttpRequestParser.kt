@@ -12,9 +12,9 @@ object HttpRequestParser {
             val password = (b ?: throw HttpErrorResponseException(400, "Missing password"))
 
             UserManager.login(username, password)
-            ctx.result("logged in")
         } catch (e: HttpErrorResponseException) {
             ctx.status(e.code)
+            ctx.result(e.message?:"")
         }
     }
 
@@ -27,6 +27,7 @@ object HttpRequestParser {
             UserManager.register(username, password)
         } catch (e: HttpErrorResponseException) {
             ctx.status(e.code)
+            ctx.result(e.message?:"")
         }
     }
 }

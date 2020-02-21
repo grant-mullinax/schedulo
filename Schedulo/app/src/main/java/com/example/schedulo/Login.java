@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
-    private static final String SERVER_URL = "http://localhost:7000/login";
+    private static final String SERVER_URL = "http://10.0.2.2:7000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

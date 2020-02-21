@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    private static final String SERVER_URL = "http://localhost:7000/register";
+    private static final String SERVER_URL = "http://10.0.2.2:7000/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
