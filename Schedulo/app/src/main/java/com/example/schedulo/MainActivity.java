@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import java.util.Calendar;
+import android.widget.CalendarView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,15 +15,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AddCalendarEvent(View view) {
-        Calendar calendarEvent = Calendar.getInstance();
-        Intent intent = new Intent(Intent.ACTION_EDIT);
-        intent.setType("vnd.android.cursor.item/event");
-        intent.putExtra("beginTime", calendarEvent.getTimeInMillis());
-        intent.putExtra("endTime", calendarEvent.getTimeInMillis() + 60 * 60 * 1000);
-        intent.putExtra("allDay", true);
-        intent.putExtra("rule", "FREQ=YEARLY");
-        intent.putExtra("title", "Calendar Event");
-        startActivity(intent);
+        CalendarView simpleCalendarView = (CalendarView) findViewById(R.id.calendar);
+        long selectedDate = (simpleCalendarView.getDate()) / 1000;
+
     }
 
     public void LogOut(View view) {
