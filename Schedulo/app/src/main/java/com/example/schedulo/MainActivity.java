@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
     public void AddCalendarEvent(View view) {
         CalendarView simpleCalendarView = (CalendarView) findViewById(R.id.calendar);
         long selectedDate = (simpleCalendarView.getDate()) / 1000;
-
+        Intent intent = new Intent(this, EditCalendarEvent.class);
+        startActivity(intent);
     }
 
     public void LogOut(View view) {

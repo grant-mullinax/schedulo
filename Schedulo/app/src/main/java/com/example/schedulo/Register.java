@@ -59,8 +59,12 @@ public class Register extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        /*
                         System.out.println("\n\nERROR\n\n" + error.toString());
                         textView.setText("Could not complete request at this time.");
+                         */
+                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        Register.this.startActivity(intent);
                     }
                 }) {
             @Override
