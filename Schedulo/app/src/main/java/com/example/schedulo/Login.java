@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,17 +14,15 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class Login extends AppCompatActivity {
-    private static final String SERVER_URL = "http://10.0.2.2:7000";
+
+    private static final String SERVER_URL = "http://10.0.2.2:7000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,11 +37,8 @@ public class Login extends AppCompatActivity {
         final String inputPhone = getPhone.getText().toString();
         final String inputPass = getPass.getText().toString();
 
-        final String loginURL = SERVER_URL + "/login";
-
         RequestQueue queue = Volley.newRequestQueue(this);
-
-        StringRequest getRequest = new StringRequest(Request.Method.POST, loginURL,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -71,7 +65,7 @@ public class Login extends AppCompatActivity {
                 return params;
             }
         };
-        queue.add(getRequest);
+        queue.add(postRequest);
     }
 
     public void goToRegister(View view) {

@@ -20,7 +20,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-    private static final String SERVER_URL = "http://10.0.2.2:7000";
+
+    private static final String SERVER_URL = "http://10.0.2.2:7000/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,7 @@ public class Register extends AppCompatActivity {
         // Post to server
         final TextView textView = findViewById(R.id.textView);
         RequestQueue queue = Volley.newRequestQueue(this);
-        final String registerURL = SERVER_URL + "/register";
-        StringRequest postRequest = new StringRequest(Request.Method.POST, registerURL,
+        StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -59,8 +59,12 @@ public class Register extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        /*
                         System.out.println("\n\nERROR\n\n" + error.toString());
                         textView.setText("Could not complete request at this time.");
+                         */
+                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        Register.this.startActivity(intent);
                     }
                 }) {
             @Override
