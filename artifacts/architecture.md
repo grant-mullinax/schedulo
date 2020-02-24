@@ -4,7 +4,7 @@ The user interacts directly with the app by inputting their log in information a
 The app interacts with the server by accessing the database to store events and check user information.
 
 # Major Classes
-![alt text](/artifacts/Schedulo__Class%20Diagram.png)
+![alt text](/artifacts/Schedulo%20__%20Class%20Diagram.png)
 Description
 
 # Data Design
