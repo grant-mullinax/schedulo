@@ -4,13 +4,11 @@ The user interacts directly with the app by inputting their log in information a
 The app interacts with the server by accessing the database to store events and check user information.
 
 # Major Classes
-It should identify
-the responsibilities of each major class and how the class will interact with
-other classes. It should include descriptions of the class hierarchies, of state
-transitions, and of object persistence. If the system is large enough, it should
-describe how classes are organized into subsystems.
+![alt text](/artifacts/Schedulo__Class%20Diagram.png)
+Description
 
 # Data Design
+![alt text](/artifacts/Schedulo%20Architecture%20Server%20Component%20Diagram.jpg)
 should describe the major files and table designs to be used.
 It should describe alternatives that were considered and justify the choices
 that were made.
