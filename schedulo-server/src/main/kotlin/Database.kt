@@ -2,7 +2,6 @@ import org.mindrot.jbcrypt.BCrypt
 import java.sql.*
 import java.time.Instant
 import java.util.*
-import kotlin.random.Random
 
 object Database {
     // TODO SWITCH TO PREPARED STATEMENTS TO PREVENT SQL INJECTION
