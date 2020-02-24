@@ -26,4 +26,10 @@ class CalendarEvent {
     public void setEnd(long end) {
         this.end = end;
     }
+
+    public String getName() { return name; }
+    public String getLocation() { return location; }
+    public String getDescription() { return description; }
+    public long getStart() { return start; }
+    public long getEnd() { return end; }
 }
