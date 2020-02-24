@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="UserManagerTestSuite" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-16T01:45:05" hostname="DESKTOP-2PMDISP" time="0.334">
+<testsuite name="UserManagerTestSuite" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-02-24T00:27:59" hostname="DESKTOP-GOI21KH" time="0.379">
   <properties/>
-  <testcase name="registerTest" classname="UserManagerTestSuite" time="0.171"/>
-  <testcase name="loginFailureTest" classname="UserManagerTestSuite" time="0.082"/>
-  <testcase name="loginSuccessTest" classname="UserManagerTestSuite" time="0.081"/>
+  <testcase name="registerTest" classname="UserManagerTestSuite" time="0.193"/>
+  <testcase name="loginFailureTest" classname="UserManagerTestSuite" time="0.093"/>
+  <testcase name="loginSuccessTest" classname="UserManagerTestSuite" time="0.092"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
