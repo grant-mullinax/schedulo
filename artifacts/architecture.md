@@ -5,13 +5,15 @@ The app interacts with the server by accessing the database to store events and 
 
 # Major Classes
 ![alt text](/artifacts/Schedulo%20__%20Class%20Diagram.png)
-Description
+The Main Activity allows for a user to either register themselves as a user or login to their user account.
+The User account holds the user's name, number, password, and calendar.
+A manager is a user that is able to send events to other users.
+The calendar is able to add, delete, or edit events created by users.
+Events contain a title, start and end time, and location for users to view.
 
 # Data Design
 ![alt text](/artifacts/Schedulo%20Architecture%20Server%20Component%20Diagram.jpg)
-should describe the major files and table designs to be used.
-It should describe alternatives that were considered and justify the choices
-that were made.
+The server that the Schedulo app interacts with contains an Account Manager (to register, login, and authenticate users), Relationship Manager (allows managers to assign events to subordinates), Event Manager (for viewing, creating, editing, and deleting events), and a Database (to read and write all account information used by the server).
 
 # Business Rules
 Schedulo is not bound by any rules that impact the system's design.
@@ -44,8 +46,7 @@ believe the performance goals are achievable.
 We have no plans to expand the size of this project after its completion for this class.
 
 # Interoperability
-If the system is expected to share data or resources with other software or
-hardware, the architecture should describe how that will be accomplished.
+The system is not expected to share data or resources with any software or hardware outside of the app itself and its server.
 
 # Internationalization/Localization
 
