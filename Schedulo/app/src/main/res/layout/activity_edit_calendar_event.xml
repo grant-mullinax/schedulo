@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/eventNameBox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
@@ -29,7 +29,7 @@
 
     <EditText
         android:id="@+id/eventLocationBox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
@@ -52,7 +52,7 @@
 
     <EditText
         android:id="@+id/eventStartDateBox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
@@ -75,7 +75,7 @@
 
     <EditText
         android:id="@+id/eventStartTimeBox"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
@@ -87,7 +87,7 @@
 
     <EditText
         android:id="@+id/eventEndDateBox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
@@ -110,7 +110,7 @@
 
     <EditText
         android:id="@+id/eventEndTimeBox"
-        android:layout_width="200dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:ems="10"
@@ -122,7 +122,7 @@
 
     <EditText
         android:id="@+id/eventDescriptionBox"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
