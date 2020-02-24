@@ -76,7 +76,7 @@ Examples in Code Complete excerpt Dr. H posted
 Feasibility can be tested through the virtual Android device that Android Studio provides for testing.
 
 # Overengineering
-Pretty much how we avoid overengineering
+We plan to deal with overengineering by ensuring that if any method seems too robust or too inadequate, we carefully review such functions to either simplify or expand upon them.
 
 # Build-vs-Buy Decisions
 ## Client
