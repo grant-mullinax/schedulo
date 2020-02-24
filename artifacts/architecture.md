@@ -1,6 +1,7 @@
 # Program Organization
 ![alt text](/artifacts/Schedulo%20Architecture%20Context%20Diagram.png)
-We need a description here
+The user interacts directly with the app by inputting their log in information and, once logged in, their event information.
+The app interacts with the server by accessing the database to store events and check user information.
 
 # Major Classes
 It should identify
