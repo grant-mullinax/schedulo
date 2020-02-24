@@ -1,14 +1,17 @@
 import org.mindrot.jbcrypt.BCrypt
 import java.sql.*
+import java.time.Instant
+import java.util.*
 import kotlin.random.Random
 
 object Database {
     // TODO SWITCH TO PREPARED STATEMENTS TO PREVENT SQL INJECTION
+    var connectionUrl = "jdbc:sqlite:schedulo.db"
 
     private fun <T> managedStatement(
         statementCall: (Statement) -> T
     ): T {
-        val connection = DriverManager.getConnection("jdbc:sqlite:schedulo.db")
+        val connection = DriverManager.getConnection(connectionUrl)
 
         try {
             val sqlStatement = connection.createStatement()
@@ -17,14 +20,14 @@ object Database {
         } catch (e: SQLException) {
             System.err.println("DATABASE ERROR:")
             System.err.println(e.message)
-            throw HttpErrorResponseException(404, "Database Error")
+            throw e
         } finally {
             try {
                 connection.close()
             } catch (e: SQLException) {
                 System.err.println("FAILED TO CLOSE CONNECTION:")
                 System.err.println(e.message)
-                throw HttpErrorResponseException(404, "Database Error")
+                throw e
             }
         }
     }
@@ -39,12 +42,56 @@ object Database {
 
     fun getUser(username: String): User {
         return managedQuery(
-            "select * FROM user WHERE Username = '$username';"
-        ) { rs -> User(rs.getString("Username"), rs.getString("Password"))}
+            "SELECT * FROM users WHERE username = '$username';"
+        ) { rs -> User(
+            UUID.fromString(rs.getString("id")),
+            rs.getString("username"),
+            rs.getString("pwd_hash")
+        )}
     }
 
     fun registerUser(username: String, password: String) {
         val hashed = BCrypt.hashpw(password, BCrypt.gensalt())
-        managedUpdate("insert into user values(${Random.nextInt()}, '$username', '$hashed')")
+        managedUpdate("INSERT INTO users VALUES('${UUID.randomUUID()}', '$username', '$hashed')")
+    }
+
+    fun createEvent(event: Event) {
+        val connection = DriverManager.getConnection(connectionUrl)
+
+        val sqlStatement = connection.prepareStatement(
+            "INSERT INTO events (id, title, descr, loc, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)"
+        )
+
+        sqlStatement.setString(1, UUID.randomUUID().toString())
+        sqlStatement.setString(2, event.name)
+        sqlStatement.setString(3, event.description)
+        sqlStatement.setString(4, event.location)
+        // todo does sqllite care about longs vs strings?
+        sqlStatement.setLong(5, event.start.toEpochMilli())
+        sqlStatement.setLong(6, event.end.toEpochMilli())
+
+        sqlStatement.executeUpdate()
+
+        connection.close()
+    }
+
+    fun getEvents(): List<Event> {
+        return managedQuery(
+            "SELECT * FROM events;"
+        ) { rs ->
+            val results = mutableListOf<Event>()
+            while(rs.next())
+            {
+                results.add(Event(
+                    rs.getString("title"),
+                    rs.getString("descr"),
+                    rs.getString("loc"),
+                    Instant.ofEpochMilli(rs.getLong("start_time")),
+                    Instant.ofEpochMilli(rs.getLong("end_time"))
+                ))
+            }
+
+            return@managedQuery results.toList()
+        }
     }
 }

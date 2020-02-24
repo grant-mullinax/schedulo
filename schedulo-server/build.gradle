@@ -13,13 +13,24 @@ repositories {
 }
 
 dependencies {
-    // https://mvnrepository.com/artifact/org.mindrot/jbcrypt
+    // password db hash
     implementation group: 'org.mindrot', name: 'jbcrypt', version: '0.4'
 
+    // sql wrapper
     implementation "org.xerial:sqlite-jdbc:3.27.2.1"
+
+    // logging
     implementation "org.slf4j:slf4j-simple:1.7.28"
-    compile 'io.javalin:javalin:3.7.0'
+
+    // http server
+    implementation 'io.javalin:javalin:3.7.0'
+
+    // json serialization
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+"
+
+    // kotlin :)
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 

@@ -1,5 +1,6 @@
 import junit.framework.TestCase.assertTrue
 import org.junit.BeforeClass
+import java.lang.Exception
 import java.sql.DriverManager
 import kotlin.random.Random
 import org.junit.Test as test
@@ -8,12 +9,15 @@ class UserManagerTestSuite {
     companion object {
         @BeforeClass
         @JvmStatic fun setup() {
-            val connection = DriverManager.getConnection("jdbc:sqlite:schedulo.db")
+            val testDbUrl = "jdbc:sqlite:scheduloTest.db"
+            val connection = DriverManager.getConnection(testDbUrl)
             val statement = connection!!.createStatement()
             statement.queryTimeout = 30  // set timeout to 30 sec.
 
             statement.executeUpdate("drop table if exists user")
-            statement.executeUpdate("create table user (id integer, Username text, Password text)")
+            statement.executeUpdate("create table user (id text, Username text, Password text)")
+
+            Database.connectionUrl = testDbUrl
 
             UserManager.register("tester", "dog")
         }
@@ -21,8 +25,9 @@ class UserManagerTestSuite {
 
     @test fun loginSuccessTest() {
         try {
-            assertTrue(UserManager.login("tester", "dog"))
-        } catch (e: HttpErrorResponseException) {
+            UserManager.login("tester", "dog")
+            assertTrue(true)
+        } catch (e: Exception) {
             assertTrue(false)
         }
     }
@@ -31,8 +36,8 @@ class UserManagerTestSuite {
         try {
             UserManager.login("tester", "dogger")
             assertTrue(false)
-        } catch (e: HttpErrorResponseException) {
-            assertTrue(e.code == 403)
+        } catch (e: Exception) {
+            assertTrue(true)
         }
     }
 
@@ -42,8 +47,9 @@ class UserManagerTestSuite {
         try {
             UserManager.register(username.toString(), pass.toString())
 
-            assertTrue(UserManager.login(username.toString(), pass.toString()))
-        } catch (e: HttpErrorResponseException) {
+            UserManager.login(username.toString(), pass.toString())
+            assertTrue(true)
+        } catch (e: Exception) {
             assertTrue(false)
         }
     }
