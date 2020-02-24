@@ -1,25 +1,26 @@
 # Program Organization
 ![alt text](/artifacts/Schedulo%20Architecture%20Context%20Diagram.png)
-We need a description here
+The user interacts directly with the app by inputting their log in information and, once logged in, their event information.
+The app interacts with the server by accessing the database to store events and check user information.
 
 # Major Classes
-It should identify
-the responsibilities of each major class and how the class will interact with
-other classes. It should include descriptions of the class hierarchies, of state
-transitions, and of object persistence. If the system is large enough, it should
-describe how classes are organized into subsystems.
+![alt text](/artifacts/Schedulo%20__%20Class%20Diagram.png)
+The Main Activity allows for a user to either register themselves as a user or login to their user account.
+The User account holds the user's name, number, password, and calendar.
+A manager is a user that is able to send events to other users.
+The calendar is able to add, delete, or edit events created by users.
+Events contain a title, start and end time, and location for users to view.
 
 # Data Design
-should describe the major files and table designs to be used.
-It should describe alternatives that were considered and justify the choices
-that were made.
+![alt text](/artifacts/Schedulo%20Architecture%20Server%20Component%20Diagram.jpg)
+The server that the Schedulo app interacts with contains an Account Manager (to register, login, and authenticate users), Relationship Manager (allows managers to assign events to subordinates), Event Manager (for viewing, creating, editing, and deleting events), and a Database (to read and write all account information used by the server).
 
 # Business Rules
 Schedulo is not bound by any rules that impact the system's design.
 
 # User Interface Design
 
-![alt text](/artifacts/User%20Interface.png)
+![alt text](/artifacts/UI%20Diagram.png)
 
 When the user opens the app, they will see a screen asking for their log in information, as well as a button to log in once the information is entered and a button to register if they do not have an account yet.
 On the register screen, the user is asked for their name, phone number, and password. The phone number and password will be their log in information.
@@ -38,18 +39,15 @@ applications areas such as driver development and embedded systems.
 * Passwords are hashed with bcrypt in the database
 
 # Performance
-The architecture should provide estimates and explain why the architects
-believe the performance goals are achievable. 
+Server preformance is prioritized by mostly just leaning on the preformance of Javalin and its dependencies. In conjunction with this the sql database schema is being designed with efficiency in mind.
 
 # Scalability
 We have no plans to expand the size of this project after its completion for this class.
 
 # Interoperability
-If the system is expected to share data or resources with other software or
-hardware, the architecture should describe how that will be accomplished.
+The system is not expected to share data or resources with any software or hardware outside of the app itself and its server.
 
 # Internationalization/Localization
-
 Since scheduling is a global need, Internationalization isn't a problem. Adding support for other languages is doable.
 
 # Input/Output
@@ -61,22 +59,16 @@ Since scheduling is a global need, Internationalization isn't a problem. Adding 
 	* Calendar with event information
 
 # Error Processing
-Error handling is often treated as a coding-convention-level issue, if it's
-treated at all. But because it has systemwide implications, it is best treated at
-the architectural level.
-Examples in Code Complete excerpt Dr. H posted
+All server faults are thrown as exceptions and bubbled up to the user and returned as an appropriate response, no exception will ever cause the server to halt execution, and all errors encountered are written to the console despite not halting execution.
 
 # Fault Tolerance
-Fault tolerance is a collection of techniques that increase a system's reliability
-by detecting errors, recovering from them if possible, and containing their bad
-effects if not.
-Examples in Code Complete excerpt Dr. H posted
+Every input from the database and users operates without assumptions and with the capabilites to deal with any possible recieved value even if they are unlikely and technically not possible.
 
 # Architectural Feasibility
 Feasibility can be tested through the virtual Android device that Android Studio provides for testing.
 
 # Overengineering
-Pretty much how we avoid overengineering
+Overengineering is avoided by not abstracting implementation beyond the needed capabilities, and only providing functionality strictly for what is needed by the user.
 
 # Build-vs-Buy Decisions
 ## Client
