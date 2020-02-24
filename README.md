@@ -50,15 +50,19 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 ## Sprint 4
 ### Responsibilities
 * Sam
-    * 
+    * Create UI for adding events to calendar
+    * Continue debugging requests from app to server for log in and register functionality
+    * Record app demonstration
 * Grant 
-    * 
+    * Added database schema for individual users.
+    * Implemented endpoints for adding and viewing events.
+    * Added tests for event actions.
 * Andy
     * 
 * Andres
     * Create calendar event object
     * Transfer product backlog to Trello
-    * Added architecture document template
+    * Added architecture document template along with various descriptions
 
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
 * [Requirements](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/requirements.md)
@@ -66,10 +70,6 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * [Burndown Chart / Velocity Chart](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
 * Design Documents
     * [Architecture](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/architecture.md)
-    * [Class Diagram](https://docs.google.com/drawings/d/1OK6jF0HXs6KCT5-PJrCwCR5yFjp-USOpkegakGwRKKU/edit?usp=sharing)
-    * [Context Diagram](https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc)
-    * [Container Diagram](https://docs.google.com/drawings/d/1O8AHw3tQyJEcRltbBX12G2N6gbYTFzO9zbenqoTwZh8)
-    * [Server Component Diagram](https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyja2nvQJq-PtxW0XzPFU0ym2aA)
     * [Server Code Diagram](https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU)
     * [App Component Diagram](https://drive.google.com/file/d/1DO-DUoxMLjF8pbk0AvU4kWtS_g_s_NIv/view?usp=sharing)
 * Source Code
@@ -78,4 +78,5 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Automated Tests
     * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
+    * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
 * [Demonstration]
