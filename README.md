@@ -76,6 +76,6 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [App](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/main/java/com/example/schedulo)
     * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
 * Automated Tests
-    * [Login] (https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
-    * [] 
+    * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
+    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
 * [Demonstration]
