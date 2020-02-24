@@ -58,7 +58,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * Implemented endpoints for adding and viewing events.
     * Added tests for event actions.
 * Andy
-    * 
+    * Added logout feature.
+    * Added tests for login and calendar events.
+    * Updated network config from domain to base.
 * Andres
     * Create calendar event object
     * Transfer product backlog to Trello
