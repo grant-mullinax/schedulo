@@ -39,8 +39,7 @@ applications areas such as driver development and embedded systems.
 * Passwords are hashed with bcrypt in the database
 
 # Performance
-The architecture should provide estimates and explain why the architects
-believe the performance goals are achievable. 
+Server preformance is prioritized by mostly just leaning on the preformance of Javalin and its dependencies. In conjunction with this the sql database schema is being designed with efficiency in mind.
 
 # Scalability
 We have no plans to expand the size of this project after its completion for this class.
@@ -49,7 +48,6 @@ We have no plans to expand the size of this project after its completion for thi
 The system is not expected to share data or resources with any software or hardware outside of the app itself and its server.
 
 # Internationalization/Localization
-
 Since scheduling is a global need, Internationalization isn't a problem. Adding support for other languages is doable.
 
 # Input/Output
@@ -61,22 +59,16 @@ Since scheduling is a global need, Internationalization isn't a problem. Adding 
 	* Calendar with event information
 
 # Error Processing
-Error handling is often treated as a coding-convention-level issue, if it's
-treated at all. But because it has systemwide implications, it is best treated at
-the architectural level.
-Examples in Code Complete excerpt Dr. H posted
+All server faults are thrown as exceptions and bubbled up to the user and returned as an appropriate response, no exception will ever cause the server to halt execution, and all errors encountered are written to the console despite not halting execution.
 
 # Fault Tolerance
-Fault tolerance is a collection of techniques that increase a system's reliability
-by detecting errors, recovering from them if possible, and containing their bad
-effects if not.
-Examples in Code Complete excerpt Dr. H posted
+Every input from the database and users operates without assumptions and with the capabilites to deal with any possible recieved value even if they are unlikely and technically not possible.
 
 # Architectural Feasibility
 Feasibility can be tested through the virtual Android device that Android Studio provides for testing.
 
 # Overengineering
-We plan to deal with overengineering by ensuring that if any method seems too robust or too inadequate, we carefully review such functions to either simplify or expand upon them.
+Overengineering is avoided by not abstracting implementation beyond the needed capabilities, and only providing functionality strictly for what is needed by the user.
 
 # Build-vs-Buy Decisions
 ## Client
