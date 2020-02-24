@@ -10,7 +10,6 @@ data class Event(val name: String, val description: String, val location: String
 object HttpRequestParser {
 
     fun login(ctx: Context) {
-<<<<<<< HEAD
         val username = (ctx.header("username") ?: throw BadRequestResponse("Missing username"))
         val password = (ctx.header("password") ?: throw BadRequestResponse("Missing password"))
 
@@ -45,36 +44,5 @@ object HttpRequestParser {
 
     fun getEvents(ctx: Context) {
         ctx.json(Database.getEvents())
-=======
-        try {
-            val a = ctx.formParam("username")
-            val b = ctx.formParam("password")
-            val username = (a ?: throw HttpErrorResponseException(400, "Missing username"))
-            val password = (b ?: throw HttpErrorResponseException(400, "Missing password"))
-
-            UserManager.login(username, password)
-
-            ctx.result("logged in")
-        } catch (e: HttpErrorResponseException) {
-            ctx.status(e.code)
-            ctx.result(e.message?:"")
-        }
-    }
-
-    fun register(ctx: Context) {
-        try {
-            val a = ctx.formParam("username")
-            val b = ctx.formParam("password")
-            val username = (a ?: throw HttpErrorResponseException(400, "Missing username"))
-            val password = (b ?: throw HttpErrorResponseException(400, "Missing password"))
-
-            UserManager.register(username, password)
-
-            ctx.result("registered")
-        } catch (e: HttpErrorResponseException) {
-            ctx.status(e.code)
-            ctx.result(e.message?:"")
-        }
->>>>>>> 3ac6e69192fc7b38792ec2b78ab9f80f97244022
     }
 }
