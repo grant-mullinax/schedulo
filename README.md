@@ -50,7 +50,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 ## Sprint 4
 ### Responsibilities
 * Sam
-    * 
+    * Create UI for adding events to calendar
+    * Continue debugging requests from app to server for log in and register functionality
+    * Record app demonstration
 * Grant 
     * 
 * Andy
@@ -66,6 +68,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * [Burndown Chart / Velocity Chart](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
 * Design Documents
     * [Architecture](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/architecture.md)
+    * [Class Diagram](https://docs.google.com/drawings/d/1OK6jF0HXs6KCT5-PJrCwCR5yFjp-USOpkegakGwRKKU/edit?usp=sharing)
     * [Context Diagram](https://docs.google.com/drawings/d/1x0TNeWScxqYFPz7hsrK8bibvXTgXxpFZGY4P3sLvfkc)
     * [Container Diagram](https://docs.google.com/drawings/d/1O8AHw3tQyJEcRltbBX12G2N6gbYTFzO9zbenqoTwZh8)
     * [Server Component Diagram](https://docs.google.com/drawings/d/1B-oxczOIYy5Rx0QgYyja2nvQJq-PtxW0XzPFU0ym2aA)
