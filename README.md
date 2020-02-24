@@ -54,7 +54,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * Continue debugging requests from app to server for log in and register functionality
     * Record app demonstration
 * Grant 
-    * 
+    * Added database schema for individual users.
+    * Implemented endpoints for adding and viewing events.
+    * Added tests for event actions.
 * Andy
     * 
 * Andres
@@ -80,4 +82,5 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Automated Tests
     * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
+    * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
 * [Demonstration]
