@@ -62,7 +62,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Andres
     * Create calendar event object
     * Transfer product backlog to Trello
-    * Added architecture document template
+    * Added architecture document template along with various descriptions
 
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
 * [Requirements](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/requirements.md)
