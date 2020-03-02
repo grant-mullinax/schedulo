@@ -39,7 +39,7 @@ public class ViewEventTest {
             = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void registerAndLoginTest() {
+    public void viewEventTest() {
         onView(withId(R.id.view)).perform(click());
         onView(withId(R.id.back)).check(matches(isDisplayed()));
     }
