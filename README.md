@@ -91,6 +91,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Sam
 
 * Grant 
+   * Fixed requirements table format
+   * Managed sprint backlog and planning
+   * Updated event endpoint formatting to allow user-specific results
 
 * Andy
     * Fix requirements table
