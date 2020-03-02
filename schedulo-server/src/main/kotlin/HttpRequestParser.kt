@@ -4,8 +4,7 @@ import java.time.Instant
 
 data class SimpleResponse(val message: String)
 
-data class EventRequest(val name: String, val description: String, val location: String, val start: Int, val end: Int)
-data class Event(val name: String, val description: String, val location: String, val start: Instant, val end: Instant)
+data class Event(val name: String, val description: String, val location: String, val start: Long, val end: Long)
 
 object HttpRequestParser {
 
@@ -26,18 +25,10 @@ object HttpRequestParser {
     }
 
     fun createEvent(ctx: Context) {
-        val eventRequest = ctx.bodyValidator<EventRequest>()
+        val event = ctx.bodyValidator<Event>()
             .check({ it.start < it.end}, "Start time must be before end time")
             // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
             .get()
-
-        // todo how to remove this?
-        val event = Event(eventRequest.name,
-            eventRequest.description,
-            eventRequest.location,
-            Instant.ofEpochMilli(eventRequest.start.toLong()),
-            Instant.ofEpochMilli(eventRequest.end.toLong())
-        )
 
         Database.createEvent(event)
     }

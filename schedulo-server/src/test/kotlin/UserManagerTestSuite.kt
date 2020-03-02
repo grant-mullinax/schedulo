@@ -81,7 +81,8 @@ class UserManagerTestSuite {
 
     @test fun createEventTest() {
         try {
-            Database.createEvent(Event("name", "desc", "loc", Instant.now(), Instant.now().plusMillis(100)))
+            val now = Instant.now().toEpochMilli()
+            Database.createEvent(Event("name", "desc", "loc", now, now + 100))
             assertTrue(true)
         } catch (e: Exception) {
             assertTrue(false)
@@ -90,7 +91,8 @@ class UserManagerTestSuite {
 
     @test fun getEventTest() {
         try {
-            Database.createEvent(Event("create test", "desc", "loc", Instant.now(), Instant.now().plusMillis(100)))
+            val now = Instant.now().toEpochMilli()
+            Database.createEvent(Event("create test", "desc", "loc", now, now + 100))
             assertTrue(Database.getEvents().filter { it.name == "create test" }.size == 1)
         } catch (e: Exception) {
             assertTrue(false)

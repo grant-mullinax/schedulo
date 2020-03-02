@@ -66,8 +66,8 @@ object Database {
         sqlStatement.setString(3, event.description)
         sqlStatement.setString(4, event.location)
         // todo does sqllite care about longs vs strings?
-        sqlStatement.setLong(5, event.start.toEpochMilli())
-        sqlStatement.setLong(6, event.end.toEpochMilli())
+        sqlStatement.setLong(5, event.start)
+        sqlStatement.setLong(6, event.end)
 
         sqlStatement.executeUpdate()
 
@@ -85,8 +85,8 @@ object Database {
                     rs.getString("title"),
                     rs.getString("descr"),
                     rs.getString("loc"),
-                    Instant.ofEpochMilli(rs.getLong("start_time")),
-                    Instant.ofEpochMilli(rs.getLong("end_time"))
+                    rs.getLong("start_time"),
+                    rs.getLong("end_time")
                 ))
             }
 
