@@ -85,3 +85,33 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
     * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
 * [Demonstration](https://www.youtube.com/watch?v=lw0A_fiKHTk&feature=youtu.be)
+
+## Sprint 4
+### Responsibilities
+* Sam
+
+* Grant 
+
+* Andy
+ 
+* Andres
+    * Read input from edit event screen
+    * New 3rd party calendar for event displaying
+    * Relating user stories to design documents
+
+* [Sprint Backlog](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+* [Requirements](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/requirements.md)
+* [Trello Board](https://trello.com/b/9H7LNIEr/schedule-project)
+* [Burndown Chart / Velocity Chart](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
+* Design Documents
+    * [Architecture](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/architecture.md)
+    * [Server Code Diagram](https://docs.google.com/drawings/d/1lagTMMsODtt2wjhp_Prh2UYJPCuoy_UAmadyvqGxrVU)
+    * [App Component Diagram](https://drive.google.com/file/d/1DO-DUoxMLjF8pbk0AvU4kWtS_g_s_NIv/view?usp=sharing)
+* Source Code
+    * [App](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/main/java/com/example/schedulo)
+    * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
+* Automated Tests
+    * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
+    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
+    * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
+* [Demonstration]
