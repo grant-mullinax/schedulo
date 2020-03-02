@@ -1,5 +1,6 @@
 import junit.framework.TestCase.assertTrue
 import org.junit.BeforeClass
+import org.mindrot.jbcrypt.BCrypt
 import java.lang.Exception
 import java.sql.DriverManager
 import java.time.Instant
@@ -46,6 +47,11 @@ class UserManagerTestSuite {
 
             UserManager.register("tester", "dog")
         }
+    }
+
+    @test fun databaseHashTest() {
+        val user = Database.getUser("tester")
+        assertTrue(BCrypt.checkpw("dog", user.password))
     }
 
     @test fun loginSuccessTest() {
