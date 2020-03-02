@@ -17,4 +17,6 @@
     <string name="time_hint">hh:mm</string>
     <string name="toggle_am">AM</string>
     <string name="toggle_pm">PM</string>
+    <string name="back">Back</string>
+    <string name="action_settings">Test</string>
 </resources>
