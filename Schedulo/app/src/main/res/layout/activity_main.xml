@@ -22,6 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+<<<<<<< HEAD
+=======
+        android:layout_marginBottom="4dp"
+>>>>>>> 50183888efebcf3df285147c26130ac2f94e1b19
         android:enabled="true"
         android:onClick="AddCalendarEvent"
         android:text="@string/button_addevent"
@@ -34,7 +38,12 @@
         android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginBottom="56dp"
+=======
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="32dp"
+>>>>>>> 50183888efebcf3df285147c26130ac2f94e1b19
         android:enabled="true"
         android:onClick="LogOut"
         android:text="@string/button_logout"

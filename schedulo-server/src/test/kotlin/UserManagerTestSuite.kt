@@ -2,6 +2,7 @@ import junit.framework.TestCase.assertTrue
 import org.junit.BeforeClass
 import java.lang.Exception
 import java.sql.DriverManager
+import java.time.Instant
 import kotlin.random.Random
 import org.junit.Test as test
 
@@ -14,8 +15,32 @@ class UserManagerTestSuite {
             val statement = connection!!.createStatement()
             statement.queryTimeout = 30  // set timeout to 30 sec.
 
-            statement.executeUpdate("drop table if exists user")
-            statement.executeUpdate("create table user (id text, Username text, Password text)")
+            statement.executeUpdate(
+                    "DROP TABLE IF EXISTS users;" +
+                        "DROP TABLE IF EXISTS events;" +
+                        "DROP TABLE IF EXISTS users_events;")
+            statement.executeUpdate(
+                        "CREATE TABLE users (\n" +
+                        "    id          TEXT PRIMARY KEY,\n" +
+                        "    username    TEXT NOT NULL,\n" +
+                        "    pwd_hash    TEXT NOT NULL\n" +
+                        ");\n" +
+                        "\n" +
+                        "-- #############################################\n" +
+                        " \n" +
+                        "CREATE TABLE events (\n" +
+                        "    id          TEXT    PRIMARY KEY,\n" +
+                        "    title       TEXT    NOT NULL,\n" +
+                        "    descr       TEXT    NOT NULL,\n" +
+                        "    loc         TEXT    NOT NULL,\n" +
+                        "    start_time  INTEGER NOT NULL,\n" +
+                        "    end_time    INTEGER NOT NULL\n" +
+                        ");\n" +
+                        "\n" +
+                        "CREATE TABLE users_events (\n" +
+                        "    usr_id   TEXT NOT NULL REFERENCES users (id),\n" +
+                        "    event_id TEXT NOT NULL REFERENCES events (id)\n" +
+                        ");")
 
             Database.connectionUrl = testDbUrl
 
@@ -49,6 +74,24 @@ class UserManagerTestSuite {
 
             UserManager.login(username.toString(), pass.toString())
             assertTrue(true)
+        } catch (e: Exception) {
+            assertTrue(false)
+        }
+    }
+
+    @test fun createEventTest() {
+        try {
+            Database.createEvent(Event("name", "desc", "loc", Instant.now(), Instant.now().plusMillis(100)))
+            assertTrue(true)
+        } catch (e: Exception) {
+            assertTrue(false)
+        }
+    }
+
+    @test fun getEventTest() {
+        try {
+            Database.createEvent(Event("create test", "desc", "loc", Instant.now(), Instant.now().plusMillis(100)))
+            assertTrue(Database.getEvents().filter { it.name == "create test" }.size == 1)
         } catch (e: Exception) {
             assertTrue(false)
         }
