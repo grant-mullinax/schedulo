@@ -93,6 +93,10 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Grant 
 
 * Andy
+    * Fix requirements table
+    * Add view events feature
+    * Update unit test for Calendar Event
+    * Add view events test
  
 * Andres
     * Read input from edit event screen
@@ -114,4 +118,5 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
     * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
+    * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java)
 * [Demonstration]
