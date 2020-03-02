@@ -6,7 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CalendarView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+    static public List<CalendarEvent> events = new ArrayList<CalendarEvent>();;
+    static int num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void LogOut(View view) {
         Intent intent = new Intent(MainActivity.this, Login.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    public void ViewEvents(View view) {
+        Intent intent = new Intent(MainActivity.this, ViewEvents.class);
         MainActivity.this.startActivity(intent);
     }
 }

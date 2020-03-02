@@ -32,4 +32,8 @@ class CalendarEvent {
     public String getDescription() { return description; }
     public long getStart() { return start; }
     public long getEnd() { return end; }
+
+    public String toString() {
+        return this.name;
+    }
 }
