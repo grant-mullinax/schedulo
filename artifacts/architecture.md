@@ -3,6 +3,12 @@
 The user interacts directly with the app by inputting their log in information and, once logged in, their event information.
 The app interacts with the server by accessing the database to store events and check user information.
 
+|ID | User Story|
+|---|-----------|
+| 1 | As a user I want to be able to log into my account so that I can interact with the application. |
+| 2 | As a user, I want to be able to create new events on the server so that I can keep track of them. |
+| 3 | As a user, I want to be able to view my schedule so I can view what I have saved. |
+
 # Major Classes
 ![alt text](/artifacts/Schedulo%20__%20Class%20Diagram.png)
 The Main Activity allows for a user to either register themselves as a user or login to their user account.
@@ -11,9 +17,20 @@ A manager is a user that is able to send events to other users.
 The calendar is able to add, delete, or edit events created by users.
 Events contain a title, start and end time, and location for users to view.
 
+|ID | User Story|
+|---|-----------|
+| 6 | As a manager, I want to become a manager and gain the ability to assign events to other accepting users so that I may manage their schedules. |
+| 8 | As a user, I want to be able to create an account on the server  so I can use features of the app. |
+| 10| As a user, I want to be able to edit events on the server so that I can correct my mistakes. |
+
 # Data Design
 ![alt text](/artifacts/Schedulo%20Architecture%20Server%20Component%20Diagram.jpg)
 The server that the Schedulo app interacts with contains an Account Manager (to register, login, and authenticate users), Relationship Manager (allows managers to assign events to subordinates), Event Manager (for viewing, creating, editing, and deleting events), and a Database (to read and write all account information used by the server).
+
+|ID | User Story|
+|---|-----------|
+| 8 | As a user, I want to be able to create an account on the server so I can use features of the app. |
+| 13| As a user, I want to have screens that allow me to create or edit an event and interact with the back end so that I may operate the app. |
 
 # Business Rules
 Schedulo is not bound by any rules that impact the system's design.
@@ -57,6 +74,12 @@ Since scheduling is a global need, Internationalization isn't a problem. Adding 
 
 * Output
 	* Calendar with event information
+
+|ID | User Story|
+|---|-----------|
+| 2 | As a user, I want to be able to create new events so that I can keep track of them. |
+| 15| As a user, I want to have a calendar screen so that I can see a visual of my month/week. |
+| 17| As a user, I want to be able to register an account so that I can be able to log in to an account. |
 
 # Error Processing
 All server faults are thrown as exceptions and bubbled up to the user and returned as an appropriate response, no exception will ever cause the server to halt execution, and all errors encountered are written to the console despite not halting execution.
