@@ -15,5 +15,6 @@ public class CalendarEventTest {
         assert(event.getLocation().equals("test loc"));
         assert(event.getStart() == 0);
         assert(event.getEnd() == 1);
+        assert(event.toString().equals("test"));
     }
 }
