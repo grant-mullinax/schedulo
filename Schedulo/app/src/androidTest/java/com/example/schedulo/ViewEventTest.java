@@ -32,8 +32,6 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ViewEventTest {
 
-    private String username, password, wrongPassword;
-
     @Rule
     public ActivityTestRule<MainActivity> activityRule
             = new ActivityTestRule<>(MainActivity.class);
