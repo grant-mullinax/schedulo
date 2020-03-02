@@ -93,7 +93,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Grant 
 
 * Andy
-    * Fix requiremnts table
+    * Fix requirements table
     * Add view events feature
     * Update unit test for Calendar Event
     * Add view events test
