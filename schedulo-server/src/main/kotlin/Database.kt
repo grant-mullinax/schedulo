@@ -74,14 +74,39 @@ object Database {
         connection.close()
     }
 
-    fun getEvents(): List<Event> {
+    fun getEventsForUser(user: User): List<IdEvent> {
+        return managedQuery(
+            "SELECT events.*\n" +
+                   "FROM users\n" +
+                   "JOIN users_events ON users.id = users_events.usr_id AND users.id = '${user.id}'\n" +
+                   "JOIN events ON events.id = users_events.event_id;"
+        ) { rs ->
+            val results = mutableListOf<IdEvent>()
+            while(rs.next())
+            {
+                results.add(IdEvent(
+                    UUID.fromString(rs.getString("id")),
+                    rs.getString("title"),
+                    rs.getString("descr"),
+                    rs.getString("loc"),
+                    rs.getLong("start_time"),
+                    rs.getLong("end_time")
+                ))
+            }
+
+            return@managedQuery results.toList()
+        }
+    }
+
+    fun getEvents(): List<IdEvent> {
         return managedQuery(
             "SELECT * FROM events;"
         ) { rs ->
-            val results = mutableListOf<Event>()
+            val results = mutableListOf<IdEvent>()
             while(rs.next())
             {
-                results.add(Event(
+                results.add(IdEvent(
+                    UUID.fromString(rs.getString("id")),
                     rs.getString("title"),
                     rs.getString("descr"),
                     rs.getString("loc"),

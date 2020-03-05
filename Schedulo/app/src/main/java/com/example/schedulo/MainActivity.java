@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         actionbar.setDisplayHomeAsUpEnabled(false);
         actionbar.setTitle(null);
 
-        compactCalendar =  (CompactCalendarView) findViewById(R.id.compactcalendar);
+        compactCalendar =  (CompactCalendarView) findViewById(R.id.calendar);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
     }

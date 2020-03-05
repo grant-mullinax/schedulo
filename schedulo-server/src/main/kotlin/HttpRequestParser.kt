@@ -1,10 +1,7 @@
 import io.javalin.http.BadRequestResponse
 import io.javalin.http.Context
-import java.time.Instant
 
 data class SimpleResponse(val message: String)
-
-data class Event(val name: String, val description: String, val location: String, val start: Long, val end: Long)
 
 object HttpRequestParser {
 
@@ -34,6 +31,12 @@ object HttpRequestParser {
     }
 
     fun getEvents(ctx: Context) {
-        ctx.json(Database.getEvents())
+        val username = (ctx.header("username") ?: throw BadRequestResponse("Missing username"))
+        val password = (ctx.header("password") ?: throw BadRequestResponse("Missing password"))
+
+        val user = UserManager.login(username, password)
+        ctx.json(SimpleResponse("logged in"))
+
+        ctx.json(Database.getEventsForUser(user))
     }
 }
