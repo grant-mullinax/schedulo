@@ -5,11 +5,15 @@ data class SimpleResponse(val message: String)
 
 object HttpRequestParser {
 
-    fun login(ctx: Context) {
+    fun getUserFromDetails(ctx: Context) : User {
         val username = (ctx.header("username") ?: throw BadRequestResponse("Missing username"))
         val password = (ctx.header("password") ?: throw BadRequestResponse("Missing password"))
 
-        UserManager.login(username, password)
+        return UserManager.login(username, password)
+    }
+
+    fun login(ctx: Context) {
+        getUserFromDetails(ctx)
         ctx.json(SimpleResponse("logged in"))
     }
 
@@ -22,21 +26,18 @@ object HttpRequestParser {
     }
 
     fun createEvent(ctx: Context) {
+        val user = getUserFromDetails(ctx)
+
         val event = ctx.bodyValidator<Event>()
             .check({ it.start < it.end}, "Start time must be before end time")
             // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
             .get()
 
-        Database.createEvent(event)
+        Database.createEventForUser(event, user)
     }
 
     fun getEvents(ctx: Context) {
-        val username = (ctx.header("username") ?: throw BadRequestResponse("Missing username"))
-        val password = (ctx.header("password") ?: throw BadRequestResponse("Missing password"))
-
-        val user = UserManager.login(username, password)
-        ctx.json(SimpleResponse("logged in"))
-
+        val user = getUserFromDetails(ctx)
         ctx.json(Database.getEventsForUser(user))
     }
 }

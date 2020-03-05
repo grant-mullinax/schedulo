@@ -54,24 +54,38 @@ object Database {
         managedUpdate("INSERT INTO users VALUES('${UUID.randomUUID()}', '$username', '$hashed')")
     }
 
-    fun createEvent(event: Event) {
+    fun createEventForUser(event: Event, user: User) : IdEvent{
         val connection = DriverManager.getConnection(connectionUrl)
 
-        val sqlStatement = connection.prepareStatement(
+        val eventStatement = connection.prepareStatement(
             "INSERT INTO events (id, title, descr, loc, start_time, end_time) VALUES (?, ?, ?, ?, ?, ?)"
         )
 
-        sqlStatement.setString(1, UUID.randomUUID().toString())
-        sqlStatement.setString(2, event.name)
-        sqlStatement.setString(3, event.description)
-        sqlStatement.setString(4, event.location)
-        // todo does sqllite care about longs vs strings?
-        sqlStatement.setLong(5, event.start)
-        sqlStatement.setLong(6, event.end)
+        val eventId = UUID.randomUUID()
 
-        sqlStatement.executeUpdate()
+        eventStatement.setString(1, eventId.toString())
+        eventStatement.setString(2, event.name)
+        eventStatement.setString(3, event.description)
+        eventStatement.setString(4, event.location)
+        eventStatement.setLong(5, event.start)
+        eventStatement.setLong(6, event.end)
+
+        eventStatement.executeUpdate()
+
+        // todo if one fails both should fail
+
+        val userEventStatement = connection.prepareStatement(
+            "INSERT INTO users_events (usr_id, event_id) VALUES (?, ?)"
+        )
+
+        userEventStatement.setString(1, eventId.toString())
+        userEventStatement.setString(2, user.id.toString())
+
+        userEventStatement.executeUpdate()
 
         connection.close()
+
+        return IdEvent(eventId, event)
     }
 
     fun getEventsForUser(user: User): List<IdEvent> {
