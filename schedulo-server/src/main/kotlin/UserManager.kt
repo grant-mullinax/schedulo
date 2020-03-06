@@ -6,7 +6,6 @@ import java.util.*
 object UserManager {
     fun login(username: String, password: String): User {
         val user = Database.getUser(username)
-
         if (!BCrypt.checkpw(password, user.password))
             throw UnauthorizedResponse()
 

@@ -1,6 +1,7 @@
 import io.javalin.Javalin
 import io.javalin.core.validation.JavalinValidation
 import io.javalin.http.InternalServerErrorResponse
+import org.mindrot.jbcrypt.BCrypt
 import java.sql.SQLException
 import java.time.Instant
 
