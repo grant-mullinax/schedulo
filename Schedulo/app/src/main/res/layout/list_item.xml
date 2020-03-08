@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/go_to_view"
+        android:layout_width="300dp"
+        android:layout_height="fill_parent"
+        android:contentDescription=""
+        android:onClick="editEvent"
+        android:text=""
+        android:src="@android:drawable/ic_menu_delete" />
+</LinearLayout>
