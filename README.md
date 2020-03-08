@@ -134,6 +134,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Andy
    * Added group by date feature for view events
    * Made events in view events clickable
+   * Added click event test
 
  
 * Andres
