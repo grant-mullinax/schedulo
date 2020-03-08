@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="52dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginBottom="30dp"
         android:onClick="ViewEvents"
         android:text="View Events"
         app:layout_constraintBottom_toTopOf="@+id/logout"

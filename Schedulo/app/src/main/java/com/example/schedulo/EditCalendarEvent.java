@@ -18,10 +18,13 @@ public class EditCalendarEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_calendar_event);
-
     }
 
     public int converter(String date, String time) {
+        String month, day, year, hour, minute;
+        month = date.substring(0, date.indexOf('/'));
+        day = date.substring(date.indexOf('/') + 1, date.lastIndexOf('/'));
+        year = date.substring(date.length() - 4);
         return 0;
     }
 
