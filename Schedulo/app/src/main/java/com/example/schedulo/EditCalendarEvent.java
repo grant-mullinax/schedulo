@@ -25,6 +25,7 @@ public class EditCalendarEvent extends AppCompatActivity {
         month = date.substring(0, date.indexOf('/'));
         day = date.substring(date.indexOf('/') + 1, date.lastIndexOf('/'));
         year = date.substring(date.length() - 4);
+        hour =  time.substring(0, time.indexOf(':'));
         return 0;
     }
 
