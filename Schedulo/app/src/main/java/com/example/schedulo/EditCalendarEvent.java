@@ -14,11 +14,6 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 
 public class EditCalendarEvent extends AppCompatActivity {
 
-    EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
-    EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
-    EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
-    EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +29,10 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText getName = findViewById(R.id.eventNameBox);
         EditText getDesc = findViewById(R.id.eventDescriptionBox);
         EditText getLoc = findViewById(R.id.eventLocationBox);
+        EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
+        EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
+        EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
+        EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
         String name = getName.getText().toString();
 
         String description = getDesc.getText().toString();
