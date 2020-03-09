@@ -131,6 +131,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
    * Clean up UI
 
 * Grant 
+   * Added edit/delete event requests
+   * Made events user-specific, and allowed many to many user-event relationships.
 
 
 * Andy
