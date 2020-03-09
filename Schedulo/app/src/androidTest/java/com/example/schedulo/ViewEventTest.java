@@ -48,5 +48,7 @@ public class ViewEventTest {
         onView(withId(R.id.view)).perform(click());
         onView(withId(R.id.go_to_view)).perform(click());
         onView(withId(R.id.addEventButton)).check(matches(isDisplayed()));
+        onView(withId(R.id.addEventButton)).perform(click());
+        onView(withId(R.id.eventNameBox)).check(matches(withText("test")));
     }
 }

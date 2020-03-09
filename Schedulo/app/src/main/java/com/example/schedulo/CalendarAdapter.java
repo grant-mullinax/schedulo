@@ -37,6 +37,7 @@ public class CalendarAdapter extends ArrayAdapter<CalendarEvent> {
 
         Button name = (Button)row.findViewById(R.id.go_to_view);
         name.setText(item.getName());
+        name.setTag(item);
         return row;
     }
 }
