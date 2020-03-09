@@ -30,9 +30,9 @@ public class ViewEvents extends AppCompatActivity {
         List<CalendarEvent> returns = new ArrayList<>();
         String prev = "";
         for(CalendarEvent e : events) {
-            if(e.getDate().compareTo(prev) != 0) {
-                returns.add(new CalendarEvent(e.getDate(), "", "", -1, -1));
-                prev = e.getDate();
+            if(e.getStartDate().compareTo(prev) != 0) {
+                returns.add(new CalendarEvent(e.getStartDate(), "", "", -1, -1));
+                prev = e.getStartDate();
             }
             returns.add(e);
         }
@@ -46,6 +46,7 @@ public class ViewEvents extends AppCompatActivity {
 
     public void editEvent(View view) {
         Intent intent = new Intent(this, EditCalendarEvent.class);
+        EditCalendarEvent.setFields((CalendarEvent) view.getTag());
         startActivity(intent);
     }
 }

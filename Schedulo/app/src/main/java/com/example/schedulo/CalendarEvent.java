@@ -1,7 +1,9 @@
 package com.example.schedulo;
 
+import java.time.Instant;
+
 class CalendarEvent implements Comparable<CalendarEvent> {
-    private String name, description, location;
+    private String name, description, location, startDate, endDate, startTime, endTime;
     private long start, end;
 
     public CalendarEvent (String name, String description, String location, long start, long end) {
@@ -10,6 +12,12 @@ class CalendarEvent implements Comparable<CalendarEvent> {
         this.location = location;
         this.start = start;
         this.end = end;
+        String iso = Instant.ofEpochSecond(start).toString();
+        startDate = iso.substring(0, iso.indexOf("T"));
+        startTime = iso.substring(iso.indexOf("T")+1, iso.indexOf("Z"));
+        iso = Instant.ofEpochSecond(end).toString();
+        endDate = iso.substring(0, iso.indexOf("T"));
+        endTime = iso.substring(iso.indexOf("T")+1, iso.indexOf("Z"));
     }
     public void setName (String name) {
         this.name = name;
@@ -32,7 +40,10 @@ class CalendarEvent implements Comparable<CalendarEvent> {
     public String getDescription() { return description; }
     public long getStart() { return start; }
     public long getEnd() { return end; }
-    public String getDate() { return "1/1/2020"; }
+    public String getStartDate() { return startDate; }
+    public String getStartTime() { return startTime; }
+    public String getEndDate() { return endDate; }
+    public String getEndTime() { return endTime; }
 
     public String toString() {
         return this.name;
