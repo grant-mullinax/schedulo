@@ -1,6 +1,6 @@
 package com.example.schedulo;
 
-class CalendarEvent {
+class CalendarEvent implements Comparable<CalendarEvent> {
     private String name, description, location;
     private long start, end;
 
@@ -32,8 +32,14 @@ class CalendarEvent {
     public String getDescription() { return description; }
     public long getStart() { return start; }
     public long getEnd() { return end; }
+    public String getDate() { return "1/1/2020"; }
 
     public String toString() {
         return this.name;
+    }
+
+    public int compareTo(CalendarEvent o) {
+        if(o.start != start) return Long.compare(start, o.start);
+        return name.compareTo(o.name);
     }
 }

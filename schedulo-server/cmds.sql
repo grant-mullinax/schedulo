@@ -21,3 +21,8 @@ CREATE TABLE users_events (
     usr_id   TEXT NOT NULL REFERENCES users (id),
     event_id TEXT NOT NULL REFERENCES events (id)
 );
+
+SELECT events.*
+FROM users
+JOIN users_events ON users.id = users_events.usr_id
+JOIN events ON events.id = users_events.event_id;

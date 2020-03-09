@@ -41,4 +41,12 @@ public class ViewEventTest {
         onView(withId(R.id.view)).perform(click());
         onView(withId(R.id.back)).check(matches(isDisplayed()));
     }
+
+    @Test
+    public void clickEventTest() {
+        MainActivity.events.add(new CalendarEvent("test", "", "", 0, 0));
+        onView(withId(R.id.view)).perform(click());
+        onView(withId(R.id.go_to_view)).perform(click());
+        onView(withId(R.id.addEventButton)).check(matches(isDisplayed()));
+    }
 }

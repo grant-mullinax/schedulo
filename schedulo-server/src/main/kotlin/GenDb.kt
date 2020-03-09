@@ -11,11 +11,12 @@ fun main(args: Array<String>) {
         val statement = connection!!.createStatement()
         statement.queryTimeout = 30  // set timeout to 30 sec.
 
-        statement.executeUpdate("drop table if exists user")
         statement.executeUpdate(
-            "DROP TABLE users;\n" +
-                    " \n" +
-                    "CREATE TABLE users (\n" +
+            "DROP TABLE IF EXISTS users;" +
+                    "DROP TABLE IF EXISTS events;" +
+                    "DROP TABLE IF EXISTS users_events;")
+        statement.executeUpdate(
+            "CREATE TABLE users (\n" +
                     "    id          TEXT PRIMARY KEY,\n" +
                     "    username    TEXT NOT NULL,\n" +
                     "    pwd_hash    TEXT NOT NULL\n" +
@@ -35,8 +36,7 @@ fun main(args: Array<String>) {
                     "CREATE TABLE users_events (\n" +
                     "    usr_id   TEXT NOT NULL REFERENCES users (id),\n" +
                     "    event_id TEXT NOT NULL REFERENCES events (id)\n" +
-                    ");"
-        )
+                    ");")
     } catch (e: SQLException) {
         // if the error message is "out of memory",
         // it probably means no database file is found
