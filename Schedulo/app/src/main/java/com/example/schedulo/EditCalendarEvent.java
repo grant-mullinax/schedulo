@@ -1,6 +1,7 @@
 package com.example.schedulo;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,45 +9,50 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ToggleButton;
+
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
+
 public class EditCalendarEvent extends AppCompatActivity {
+    static CalendarEvent event;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_calendar_event);
+        if(event != null) {
+            ((EditText) findViewById(R.id.eventNameBox)).setText(event.getName());
+            ((EditText) findViewById(R.id.eventDescriptionBox)).setText(event.getDescription());
+            ((EditText) findViewById(R.id.eventLocationBox)).setText(event.getLocation());
+            ((EditText) findViewById(R.id.eventStartDateBox)).setText(event.getStartDate());
+            ((EditText) findViewById(R.id.eventEndDateBox)).setText(event.getEndDate());
+            ((EditText) findViewById(R.id.eventStartTimeBox)).setText(event.getStartTime());
+            ((EditText) findViewById(R.id.eventEndTimeBox)).setText(event.getEndTime());
+        }
     }
 
-    // converts string date and time to epoch time
-    public long converter(String date, String time, String toggle) {
-        String month, day, year, hour, minute;
-        month = date.substring(0, date.indexOf('/'));
-        day = date.substring(date.indexOf('/') + 1, date.lastIndexOf('/'));
-        year = date.substring(date.length() - 4);
-        hour =  time.substring(0, time.indexOf(':'));
-        minute = time.substring(time.length() - 2);
-
-        int months, days, years, hours, minutes, toggler = 0;
-        months = Integer.parseInt(month);
-        days = Integer.parseInt(day);
-        years = Integer.parseInt(year);
-        years = years - 1970;
-        hours = Integer.parseInt(hour);
-        minutes = Integer.parseInt(minute);
-        if (toggle.startsWith("P"))
-            toggler += 12 * 3600;
-
-        long epoch = (years * 31556926) + (months * 2629743) + (days * 86400)
-                                        + (hours * 3600) + (minutes * 60) + toggler;
-
-        return epoch;
+    public static void setFields(CalendarEvent event2) {
+        event = event2;
     }
 
-    // creates a new event object
+    public long converter(String date, String time) {
+        try {
+            String month, day, year, hour, minute;
+            month = date.substring(0, date.indexOf('/'));
+            day = date.substring(date.indexOf('/') + 1, date.lastIndexOf('/'));
+            year = date.substring(date.length() - 4);
+            hour =  time.substring(0, time.indexOf(':'));
+            minute = time.substring(time.indexOf(':')+1);
+            return OffsetDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(hour),
+                    Integer.parseInt(minute), 0, 0, ZoneOffset.UTC).toEpochSecond();
+        } catch(Exception e) {
+            return -1;
+        }
+    }
+
     public void addEvent(View view) {
-        // finds values input in each field on the UI
         EditText getName = findViewById(R.id.eventNameBox);
         EditText getDesc = findViewById(R.id.eventDescriptionBox);
         EditText getLoc = findViewById(R.id.eventLocationBox);
@@ -54,8 +60,6 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
         EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
-        ToggleButton toggleStart = findViewById(R.id.toggleButtonStart);
-        ToggleButton toggleEnd = findViewById((R.id.toggleButtonEnd));
         String name = getName.getText().toString();
 
         String description = getDesc.getText().toString();
@@ -64,19 +68,19 @@ public class EditCalendarEvent extends AppCompatActivity {
         String startTime = eventStartTimeBox.getText().toString();
         String endDate = eventEndDateBox.getText().toString();
         String endTime = eventEndTimeBox.getText().toString();
-        String startToggle = toggleStart.toString();
-        String endToggle = toggleEnd.toString();
 
         long unixStart, unixEnd;
-        unixStart = converter(startDate, startTime, startToggle);
-        unixEnd = converter(endDate, endTime, endToggle);
+        unixStart = converter(startDate, startTime);
+        unixEnd = converter(endDate, endTime);
+
+        if(unixStart == -1 || unixEnd == -1) {
+            return;
+        }
 
         Event event = new Event(Color.RED, unixStart, name);
         CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
-        MainActivity.events.add(new CalendarEvent(name, description, location, unixStart, unixEnd));
-
+        MainActivity.events.add(calendarEvent);
         Intent intent = new Intent(this, MainActivity.class);
-        MainActivity.num++;
         startActivity(intent);
     }
 }

@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void AddCalendarEvent(View view) {
         Intent intent = new Intent(this, EditCalendarEvent.class);
+        EditCalendarEvent.setFields(null);
         startActivity(intent);
     }
 
