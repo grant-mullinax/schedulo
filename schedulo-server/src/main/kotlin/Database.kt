@@ -78,8 +78,8 @@ object Database {
             "INSERT INTO users_events (usr_id, event_id) VALUES (?, ?)"
         )
 
-        userEventStatement.setString(1, eventId.toString())
-        userEventStatement.setString(2, user.id.toString())
+        userEventStatement.setString(1, user.id.toString())
+        userEventStatement.setString(2, eventId.toString())
 
         userEventStatement.executeUpdate()
 
