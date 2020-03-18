@@ -5,7 +5,7 @@ data class SimpleResponse(val message: String)
 
 object HttpRequestParser {
     fun getHeader(ctx: Context, key: String) : String {
-        val value = ctx.formParam(key)
+        val value = ctx.header(key)
         return value ?: throw BadRequestResponse("Missing $key")
     }
 
