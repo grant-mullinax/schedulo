@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
         statement.executeUpdate(
             "CREATE TABLE users (\n" +
                     "    id          TEXT PRIMARY KEY,\n" +
-                    "    username    TEXT NOT NULL,\n" +
+                    "    username    TEXT NOT NULL UNIQUE,\n" +
                     "    pwd_hash    TEXT NOT NULL\n" +
                     ");\n" +
                     "\n" +

@@ -21,9 +21,9 @@ class UserManagerTestSuite {
                         "DROP TABLE IF EXISTS events;" +
                         "DROP TABLE IF EXISTS users_events;")
             statement.executeUpdate(
-                        "CREATE TABLE users (\n" +
+                "CREATE TABLE users (\n" +
                         "    id          TEXT PRIMARY KEY,\n" +
-                        "    username    TEXT NOT NULL,\n" +
+                        "    username    TEXT NOT NULL UNIQUE,\n" +
                         "    pwd_hash    TEXT NOT NULL\n" +
                         ");\n" +
                         "\n" +
