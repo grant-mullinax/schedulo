@@ -1,3 +1,4 @@
+import Database.updateEvent
 import io.javalin.Javalin
 import io.javalin.core.validation.JavalinValidation
 import io.javalin.http.InternalServerErrorResponse
@@ -13,8 +14,11 @@ fun main(args: Array<String>) {
     val app = Javalin.create().start(7000)
     app.post("/login", HttpRequestParser::login)
     app.post("/register", HttpRequestParser::register)
+
     app.get("/events", HttpRequestParser::getEvents)
     app.post("/events", HttpRequestParser::createEvent)
+    app.delete("/events", HttpRequestParser::deleteEvent)
+    app.put("/events", HttpRequestParser::editEvent)
 
     app.exception(SQLException::class.java) { _, ctx ->
         ctx.status(500)

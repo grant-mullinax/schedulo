@@ -45,7 +45,7 @@ class UserManagerTestSuite {
 
             Database.connectionUrl = testDbUrl
 
-            UserManager.register("tester", "dog")
+            val user = UserManager.register("tester", "dog")
         }
     }
 
@@ -102,6 +102,39 @@ class UserManagerTestSuite {
             val now = Instant.now().toEpochMilli()
             Database.createEventForUser(Event("create test", "desc", "loc", now, now + 100), user)
             assertTrue(Database.getEventsForUser(user).filter { it.name == "create test" }.size == 1)
+        } catch (e: Exception) {
+            assertTrue(false)
+        }
+    }
+
+    @test fun updateEventTest() {
+        try {
+            val user = UserManager.login("tester", "dog")
+            val now = Instant.now().toEpochMilli()
+
+            val old = Database.createEventForUser(Event("update test", "zz", "aa", now, now + 300), user)
+            assertTrue(Database.getEventsForUser(user).filter { it.name == "update test" }.size == 1)
+
+            val new = IdEvent(old.id,"update test 2", "zz", "aa", now, now + 300)
+            Database.updateEvent(new)
+
+            assertTrue(Database.getEventsForUser(user).filter { it.name == "update test 2" }.size == 1)
+        } catch (e: Exception) {
+            assertTrue(false)
+        }
+    }
+
+    @test fun deleteEventTest() {
+        try {
+            val user = UserManager.login("tester", "dog")
+            val now = Instant.now().toEpochMilli()
+
+            val event = Database.createEventForUser(Event("delete test", "zz", "aa", now, now + 300), user)
+            assertTrue(Database.getEventsForUser(user).filter { it.name == "delete test" }.size == 1)
+
+            Database.deleteEvent(event.id)
+
+            assertTrue(Database.getEventsForUser(user).none { it.name == "delete test" })
         } catch (e: Exception) {
             assertTrue(false)
         }
