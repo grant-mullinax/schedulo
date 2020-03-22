@@ -1,5 +1,6 @@
 import io.javalin.http.BadRequestResponse
 import io.javalin.http.Context
+import java.util.*
 
 data class SimpleResponse(val message: String)
 
@@ -15,7 +16,7 @@ object HttpRequestParser {
         return Pair(username, password)
     }
 
-    fun getUserFromDetails(ctx: Context) : User {
+    private fun getUserFromDetails(ctx: Context) : User {
         val (username, password) = getDetails(ctx)
         return UserManager.login(username, password)
     }
@@ -39,8 +40,26 @@ object HttpRequestParser {
             // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
             .get()
 
-        println("here")
         Database.createEventForUser(event, user)
+    }
+
+    fun deleteEvent(ctx: Context) {
+        val user = getUserFromDetails(ctx)
+        val id = ctx.pathParam("id")
+
+        Database.deleteEvent(UUID.fromString(id))
+    }
+
+    fun editEvent(ctx: Context) {
+        val user = getUserFromDetails(ctx)
+        val id = ctx.pathParam("id")
+
+        val event = ctx.bodyValidator<Event>()
+            .check({ it.start < it.end}, "Start time must be before end time")
+            // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
+            .get()
+
+        Database.updateEvent(IdEvent(UUID.fromString(id), event))
     }
 
     fun getEvents(ctx: Context) {

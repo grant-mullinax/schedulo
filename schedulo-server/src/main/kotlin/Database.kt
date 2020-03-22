@@ -112,6 +112,29 @@ object Database {
         }
     }
 
+    fun deleteEvent(id: UUID): Int {
+        return managedUpdate(
+            "DELETE FROM users_events WHERE event_id='$id';\n" +
+                    "DELETE FROM events WHERE id='$id';"
+        )
+    }
+
+    fun updateEvent(event: IdEvent): Int {
+        val connection = DriverManager.getConnection(connectionUrl)
+
+        val eventStatement = connection.prepareStatement(
+            "UPDATE events SET title=?, descr=?, loc=?, start_time=?, end_time=? WHERE id=?"
+        )
+        eventStatement.setString(1, event.name)
+        eventStatement.setString(2, event.description)
+        eventStatement.setString(3, event.location)
+        eventStatement.setLong(4, event.start)
+        eventStatement.setLong(5, event.end)
+        eventStatement.setString(6, event.id.toString())
+
+        return eventStatement.executeUpdate()
+    }
+
     fun getEvents(): List<IdEvent> {
         return managedQuery(
             "SELECT * FROM events;"
