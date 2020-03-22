@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c61dc9dc-ba07-4db2-a7fc-9ad3b565d245" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Schedulo/app/src/main/java/com/example/schedulo/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulo/app/src/main/java/com/example/schedulo/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Schedulo/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Schedulo/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="ProjectId" id="1XuPASd4iGiUOqgWTLQSGiHcjbI" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c61dc9dc-ba07-4db2-a7fc-9ad3b565d245" name="Default Changelist" comment="" />
+      <created>1581892863511</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581892863511</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="238" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581893211211">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="137" y="238" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.864@0.0.1536.864" timestamp="1581893211211" />
+    <state x="470" y="256" key="com.intellij.ide.util.TipDialog" timestamp="1581892872355">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="470" y="256" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1581892872355" />
+    <state x="578" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1581892997364">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="578" y="349" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.864@0.0.1536.864" timestamp="1581892997364" />
+  </component>
+</project>
