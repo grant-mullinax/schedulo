@@ -11,6 +11,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class ViewEvents extends AppCompatActivity {
 
@@ -18,7 +19,7 @@ public class ViewEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_events);
-        CalendarEvent[] events = setupEvents(MainActivity.events);
+        CalendarEvent[] events = setupEvents(MainActivity.getInstance().getEvents());
         CalendarAdapter adapter = new CalendarAdapter(this,
                 android.R.layout.simple_list_item_1, events);
         ListView listView = (ListView) findViewById(R.id.eventList);
@@ -26,11 +27,10 @@ public class ViewEvents extends AppCompatActivity {
     }
 
     public CalendarEvent[] setupEvents(List<CalendarEvent> events) {
-        Collections.sort(events);
         List<CalendarEvent> returns = new ArrayList<>();
         String prev = "";
         for(CalendarEvent e : events) {
-            if(e.getStartDate().compareTo(prev) != 0) {
+            if(e.getStart() != -1 && e.getStartDate().compareTo(prev) != 0) {
                 returns.add(new CalendarEvent(e.getStartDate(), "", "", -1, -1));
                 prev = e.getStartDate();
             }

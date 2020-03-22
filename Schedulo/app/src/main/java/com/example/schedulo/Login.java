@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
-    private static final String SERVER_URL = "http://10.0.2.2:7000/login";
+    private final String SERVER_URL = "http://10.0.2.2:7000/login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,15 @@ public class Login extends AppCompatActivity {
         final String inputPhone = getPhone.getText().toString();
         final String inputPass = getPass.getText().toString();
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+        RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // action
+                        MainActivity.newInstance();
+                        MainActivity.getInstance().setUsername(inputPhone);
+                        MainActivity.getInstance().setPassword(inputPass);
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         Login.this.startActivity(intent);
                     }
@@ -57,7 +60,7 @@ public class Login extends AppCompatActivity {
                     }
                 }) {
             @Override
-            protected Map<String, String> getParams() {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", inputPhone);
                 params.put("password", inputPass);

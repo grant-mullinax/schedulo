@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class Register extends AppCompatActivity {
 
-    private static final String SERVER_URL = "http://10.0.2.2:7000/register";
+    private final String SERVER_URL = "http://10.0.2.2:7000/register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +67,7 @@ public class Register extends AppCompatActivity {
                     }
                 }) {
             @Override
-            protected Map<String, String> getParams() {
+            public Map<String, String> getHeaders() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username", inputPhone);
                 params.put("password", inputPass);
