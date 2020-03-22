@@ -139,7 +139,6 @@ import static java.util.EnumSet.copyOf;
     }
 
     public void ViewEvents(View view) {
-        getInstance().pullEvents(this);
         Intent intent = new Intent(MainActivity.this, ViewEvents.class);
         MainActivity.this.startActivity(intent);
     }
