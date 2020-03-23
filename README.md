@@ -169,8 +169,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Sam
 
 * Grant 
- * Made usernames required to be unique
- * Finalized edit/delete requests
+  * Made usernames required to be unique
+  * Finalized edit/delete requests
 
 * Andy
   * Added syncing of events to server
