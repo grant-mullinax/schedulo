@@ -30,9 +30,6 @@ public class Register extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
-        Intent intent = new Intent(Register.this, MainActivity.class);
-        Register.this.startActivity(intent);
-        /*
         // Collect log in info
         EditText getName = findViewById(R.id.name);
         EditText getPhone = findViewById(R.id.number);
@@ -55,7 +52,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("\n\nSUCCESS\n\n" + response);
-                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        Intent intent = new Intent(Register.this, Login.class);
                         Register.this.startActivity(intent);
                     }
                 },
@@ -64,6 +61,9 @@ public class Register extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         System.out.println("\n\nERROR\n\n" + error.toString());
                         textView.setText("Could not complete request at this time.");
+                        Intent intent = new Intent(Register.this, Login.class);
+                        Register.this.startActivity(intent);
+
                     }
                 }) {
             @Override

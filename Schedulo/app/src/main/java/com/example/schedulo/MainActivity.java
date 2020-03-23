@@ -18,7 +18,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,7 +54,6 @@ import static java.util.EnumSet.copyOf;
         setContentView(R.layout.activity_main);
 
         final ActionBar actionbar = getSupportActionBar();
-        MainActivity.getInstance().pullEvents(this);
         actionbar.setDisplayHomeAsUpEnabled(false);
         actionbar.setTitle(null);
 
@@ -76,8 +74,43 @@ import static java.util.EnumSet.copyOf;
         this.password = password;
     }
 
-    public void addEvent(CalendarEvent event) {
-        events.add(event);
+    public void addEvent(CalendarEvent event, Context ctx) {
+
+        RequestQueue queue = Volley.newRequestQueue(ctx);
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("name", event.getName());
+            json.put("description", event.getDescription());
+            json.put("location", event.getLocation());
+            json.put("start", event.getStart());
+            json.put("end", event.getEnd());
+        } catch(Exception e) { events.add(new CalendarEvent(e.getMessage(), "", "", -1, -1)); return; }
+
+        final CalendarEvent eventT = event;
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, SERVER_URL, json,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        events.add(eventT);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+        queue.add(jsonObjectRequest);
     }
 
     public void pullEvents(Context ctx) {
@@ -86,7 +119,7 @@ import static java.util.EnumSet.copyOf;
         RequestQueue queue = Volley.newRequestQueue(ctx);
         events.add(new CalendarEvent("loading", "", "", -1, -1));
 
-        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(Request.Method.GET, SERVER_URL, null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, SERVER_URL, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -118,7 +151,7 @@ import static java.util.EnumSet.copyOf;
                 return params;
             }
         };
-        queue.add(jsonObjectRequest);
+        queue.add(jsonArrayRequest);
     }
 
     public List<CalendarEvent> getEvents() {

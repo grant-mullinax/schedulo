@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import com.github.sundeepk.compactcalendarview.domain.Event;
 
@@ -37,7 +38,7 @@ public class EditCalendarEvent extends AppCompatActivity {
         event = event2;
     }
 
-    public long converter(String date, String time) {
+    public long converter(String date, String time, String toggle) {
         try {
             String month, day, year, hour, minute;
             month = date.substring(0, date.indexOf('/'));
@@ -45,7 +46,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             year = date.substring(date.length() - 4);
             hour =  time.substring(0, time.indexOf(':'));
             minute = time.substring(time.indexOf(':')+1);
-            return OffsetDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(hour),
+            return OffsetDateTime.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(hour) + (toggle.equals("PM") ? 12 : 0),
                     Integer.parseInt(minute), 0, 0, ZoneOffset.UTC).toEpochSecond();
         } catch(Exception e) {
             return -1;
@@ -61,6 +62,10 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
 
+        ToggleButton startToggle = findViewById(R.id.toggleButtonStart);
+        ToggleButton endToggle = findViewById(R.id.toggleButtonEnd);
+
+
         String name = getName.getText().toString();
         String description = getDesc.getText().toString();
         String location = getLoc.getText().toString();
@@ -70,8 +75,10 @@ public class EditCalendarEvent extends AppCompatActivity {
         String endTime = eventEndTimeBox.getText().toString();
 
         long unixStart, unixEnd;
-        unixStart = converter(startDate, startTime);
-        unixEnd = converter(endDate, endTime);
+        unixStart = converter(startDate, startTime, startToggle.getText().toString());
+        unixEnd = converter(endDate, endTime, endToggle.getText().toString());
+
+        Log.d("CREATATAT", startDate + " " + endDate);
 
         if(unixStart == -1 || unixEnd == -1) {
             return;
@@ -79,7 +86,7 @@ public class EditCalendarEvent extends AppCompatActivity {
 
         Event event = new Event(Color.RED, unixStart, name);
         CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
-        MainActivity.getInstance().addEvent(calendarEvent);
+        MainActivity.getInstance().addEvent(calendarEvent, this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

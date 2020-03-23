@@ -14,10 +14,14 @@ class CalendarEvent implements Comparable<CalendarEvent> {
         this.end = end;
         String iso = Instant.ofEpochSecond(start).toString();
         startDate = iso.substring(0, iso.indexOf("T"));
+        startDate = startDate.substring(5, 7) + "/" + startDate.substring(8, 10) + "/" + startDate.substring(0, 4);
         startTime = iso.substring(iso.indexOf("T")+1, iso.indexOf("Z"));
+        startTime = startTime.substring(0, 5);
         iso = Instant.ofEpochSecond(end).toString();
         endDate = iso.substring(0, iso.indexOf("T"));
+        endDate = endDate.substring(5, 7) + "/" + endDate.substring(8, 10) + "/" + endDate.substring(0, 4);
         endTime = iso.substring(iso.indexOf("T")+1, iso.indexOf("Z"));
+        endTime = endTime.substring(0, 5);
     }
     public void setName (String name) {
         this.name = name;
