@@ -1,6 +1,8 @@
+import io.javalin.http.BadRequestResponse
 import io.javalin.http.Context
 import io.javalin.http.UnauthorizedResponse
 import org.mindrot.jbcrypt.BCrypt
+import java.sql.SQLException
 import java.util.*
 
 object UserManager {
@@ -13,6 +15,15 @@ object UserManager {
     }
 
     fun register(username: String, password: String) {
-        Database.registerUser(username, password)
+        try {
+            Database.registerUser(username, password)
+        } catch (ex: SQLException) {
+            // todo make code more specific
+            if (ex.errorCode == 19) { // unique username failed
+                throw BadRequestResponse("Username must be unique")
+            } else {
+                throw ex
+            }
+        }
     }
 }
