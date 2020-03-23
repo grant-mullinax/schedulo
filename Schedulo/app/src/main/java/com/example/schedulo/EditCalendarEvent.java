@@ -58,8 +58,8 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText getLoc = findViewById(R.id.eventLocationBox);
         EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
-        EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
-        EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
+        EditText eventEndDateBox = findViewById(R.id.eventEndDateBox);
+        EditText eventEndTimeBox = findViewById(R.id.eventEndTimeBox);
         String name = getName.getText().toString();
 
         String description = getDesc.getText().toString();
@@ -73,13 +73,15 @@ public class EditCalendarEvent extends AppCompatActivity {
         unixStart = converter(startDate, startTime);
         unixEnd = converter(endDate, endTime);
 
+        Log.d("CREATATAT", startDate + " " + endDate);
+
         if(unixStart == -1 || unixEnd == -1) {
             return;
         }
 
         Event event = new Event(Color.RED, unixStart, name);
         CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
-        MainActivity.getInstance().addEvent(calendarEvent);
+        MainActivity.getInstance().addEvent(calendarEvent, this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }

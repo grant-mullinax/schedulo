@@ -2,6 +2,7 @@ package com.example.schedulo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,7 @@ public class Login extends AppCompatActivity {
 
         final String inputPhone = getPhone.getText().toString();
         final String inputPass = getPass.getText().toString();
+        final Context ctx = this;
 
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
@@ -46,6 +48,7 @@ public class Login extends AppCompatActivity {
                         MainActivity.newInstance();
                         MainActivity.getInstance().setUsername(inputPhone);
                         MainActivity.getInstance().setPassword(inputPass);
+                        MainActivity.getInstance().pullEvents(ctx);
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         Login.this.startActivity(intent);
                     }
