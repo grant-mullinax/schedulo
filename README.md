@@ -173,8 +173,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
  * Finalized edit/delete requests
 
 * Andy
-
-Added syncing of events to server
+  * Added syncing of events to server
+  * Updated tests
+  * Fixed loading issue
 
 * Andres
 
@@ -191,7 +192,7 @@ Added syncing of events to server
     * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
 * Automated Tests
     * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
-    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
+    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java) - Add tests for students and start date and time
     * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
-    * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java) - Added Click Event test.
+    * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java)
 * [Demonstration]
