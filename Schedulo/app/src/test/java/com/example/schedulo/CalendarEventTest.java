@@ -3,6 +3,8 @@ package com.example.schedulo;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.junit.Assert.*;
 
 public class CalendarEventTest {
@@ -18,5 +20,8 @@ public class CalendarEventTest {
         assert(event.toString().equals("test"));
         assert(event.getStartDate().equals("01/01/1970"));
         assert(event.getEndDate().equals("01/01/1970"));
+        assert(event.getStartTime().equals("00:00"));
+        assert(event.getEndTime().equals("00:00"));
+        assert(new ViewEvents().setupEvents(Collections.singletonList(event))[0].getName().equals("01/01/1970"));
     }
 }
