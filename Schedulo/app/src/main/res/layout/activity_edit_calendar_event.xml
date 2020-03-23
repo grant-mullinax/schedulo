@@ -147,16 +147,17 @@
         android:id="@+id/addEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
+        android:layout_marginStart="4dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="162dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#7986CB"
         android:onClick="addEvent"
         android:text="@string/button_addevent"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/sendButton"
         app:layout_constraintTop_toBottomOf="@+id/eventDescriptionBox"
         app:layout_constraintVertical_bias="0.75" />
 
@@ -181,4 +182,15 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/eventStartTimeBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/eventStartTimeBox" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:onClick="sendEvent"
+        android:text="@string/button_send"
+        app:layout_constraintBaseline_toBaselineOf="@+id/addEventButton"
+        app:layout_constraintEnd_toStartOf="@+id/addEventButton"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

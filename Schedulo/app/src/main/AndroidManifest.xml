@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ViewEvents"></activity>
+        <activity android:name=".ShareEvent"></activity>
+        <activity android:name=".ViewEvents" />
         <activity
             android:name=".EditCalendarEvent"
             android:parentActivityName=".MainActivity">
@@ -36,6 +37,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Login" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

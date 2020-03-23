@@ -20,4 +20,7 @@
     <string name="back">Back</string>
     <string name="action_settings">Test</string>
     <string name="server_url">http://10.0.2.2:7000/login</string>
+    <string name="button_send">Share Event</string>
+    <string name="recipient_prompt">To</string>
+    <string name="recipient_hint">user1, user2, etc.</string>
 </resources>

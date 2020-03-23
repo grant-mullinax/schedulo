@@ -60,8 +60,8 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
         EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
-        String name = getName.getText().toString();
 
+        String name = getName.getText().toString();
         String description = getDesc.getText().toString();
         String location = getLoc.getText().toString();
         String startDate = eventStartDateBox.getText().toString();
@@ -82,5 +82,35 @@ public class EditCalendarEvent extends AppCompatActivity {
         MainActivity.getInstance().addEvent(calendarEvent);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void sendEvent(View view) {
+        Intent intent = new Intent(EditCalendarEvent.this, ShareEvent.class);
+
+        EditText getName = findViewById(R.id.eventNameBox);
+        EditText getDesc = findViewById(R.id.eventDescriptionBox);
+        EditText getLoc = findViewById(R.id.eventLocationBox);
+        EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
+        EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
+        EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
+        EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
+
+        String name = getName.getText().toString();
+        String description = getDesc.getText().toString();
+        String location = getLoc.getText().toString();
+        String startDate = eventStartDateBox.getText().toString();
+        String startTime = eventStartTimeBox.getText().toString();
+        String endDate = eventEndDateBox.getText().toString();
+        String endTime = eventEndTimeBox.getText().toString();
+
+        intent.putExtra("name", name);
+        intent.putExtra("description", description);
+        intent.putExtra("location", location);
+        intent.putExtra("startDate", startDate);
+        intent.putExtra("startTime", startTime);
+        intent.putExtra("endDate", endDate);
+        intent.putExtra("endTime", endTime);
+
+        EditCalendarEvent.this.startActivity(intent);
     }
 }

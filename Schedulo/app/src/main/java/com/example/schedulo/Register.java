@@ -30,6 +30,9 @@ public class Register extends AppCompatActivity {
     }
 
     public void registerUser(View view) {
+        Intent intent = new Intent(Register.this, MainActivity.class);
+        Register.this.startActivity(intent);
+        /*
         // Collect log in info
         EditText getName = findViewById(R.id.name);
         EditText getPhone = findViewById(R.id.number);
@@ -59,11 +62,8 @@ public class Register extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("\n\nERROR\n\n" + error.toString());/*
+                        System.out.println("\n\nERROR\n\n" + error.toString());
                         textView.setText("Could not complete request at this time.");
-                         */
-                        Intent intent = new Intent(Register.this, MainActivity.class);
-                        Register.this.startActivity(intent);
                     }
                 }) {
             @Override
@@ -76,5 +76,6 @@ public class Register extends AppCompatActivity {
             }
         };
         queue.add(postRequest);
+        */
     }
 }
