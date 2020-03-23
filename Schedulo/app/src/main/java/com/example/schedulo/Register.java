@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("\n\nSUCCESS\n\n" + response);
-                        Intent intent = new Intent(Register.this, Login.class);
+                        Intent intent = new Intent(Register.this, MainActivity.class);
                         Register.this.startActivity(intent);
                     }
                 },
@@ -76,6 +76,5 @@ public class Register extends AppCompatActivity {
             }
         };
         queue.add(postRequest);
-        */
     }
 }
