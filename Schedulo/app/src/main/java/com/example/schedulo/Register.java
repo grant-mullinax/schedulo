@@ -52,7 +52,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("\n\nSUCCESS\n\n" + response);
-                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        Intent intent = new Intent(Register.this, Login.class);
                         Register.this.startActivity(intent);
                     }
                 },
@@ -62,7 +62,7 @@ public class Register extends AppCompatActivity {
                         System.out.println("\n\nERROR\n\n" + error.toString());/*
                         textView.setText("Could not complete request at this time.");
                          */
-                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        Intent intent = new Intent(Register.this, Login.class);
                         Register.this.startActivity(intent);
                     }
                 }) {
