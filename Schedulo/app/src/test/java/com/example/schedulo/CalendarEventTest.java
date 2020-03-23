@@ -16,5 +16,6 @@ public class CalendarEventTest {
         assert(event.getStart() == 0);
         assert(event.getEnd() == 1);
         assert(event.toString().equals("test"));
+        assert(event.getStartDate().equals("1/1/1970"));
     }
 }
