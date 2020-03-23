@@ -167,6 +167,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 ## Sprint 7
 ### Responsibilities
 * Sam
+   * Continued development of event sharing functionality
+   * Added UI to support event sharing
 
 * Grant 
   * Made usernames required to be unique
