@@ -44,8 +44,11 @@ import static java.util.EnumSet.copyOf;
 
     public MainActivity() { events = new ArrayList<>(); }
 
-    public static void newInstance() {
+    public static void newInstance(String username, String password) {
         instance = new MainActivity();
+        instance.username = username;
+        instance.password = password;
+        instance.pullEvents();
     }
 
     @Override
@@ -64,14 +67,6 @@ import static java.util.EnumSet.copyOf;
 
     public static MainActivity getInstance() {
         return instance;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void addEvent(CalendarEvent event, Context ctx) {

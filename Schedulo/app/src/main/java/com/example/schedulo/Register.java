@@ -52,6 +52,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("\n\nSUCCESS\n\n" + response);
+                        MainActivity.newInstance(inputPhone, inputPass);
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         Register.this.startActivity(intent);
                     }
