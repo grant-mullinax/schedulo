@@ -172,6 +172,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 
 * Andy
 
+Added syncing of events to server
+
 * Andres
 
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
