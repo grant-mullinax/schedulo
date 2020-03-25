@@ -41,7 +41,7 @@ object HttpRequestParser {
             .get()
 
         Database.createEventForUser(event, user)
-        ctx.json(SimpleResponse("event created"))vo
+        ctx.json(SimpleResponse("event created"))
     }
 
     fun deleteEvent(ctx: Context) {
