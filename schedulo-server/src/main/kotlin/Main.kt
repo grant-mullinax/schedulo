@@ -17,8 +17,8 @@ fun main(args: Array<String>) {
 
     app.get("/events", HttpRequestParser::getEvents)
     app.post("/events", HttpRequestParser::createEvent)
-    app.delete("/events", HttpRequestParser::deleteEvent)
-    app.put("/events", HttpRequestParser::editEvent)
+    app.delete("/events/:id", HttpRequestParser::deleteEvent)
+    app.put("/events/:id", HttpRequestParser::editEvent)
 
     app.exception(SQLException::class.java) { _, ctx ->
         ctx.status(500)
