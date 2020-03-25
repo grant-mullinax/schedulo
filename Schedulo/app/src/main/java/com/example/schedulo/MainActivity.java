@@ -44,11 +44,11 @@ import static java.util.EnumSet.copyOf;
 
     public MainActivity() { events = new ArrayList<>(); }
 
-    public static void newInstance(String username, String password) {
+    public static void newInstance(String username, String password, Context ctx) {
         instance = new MainActivity();
         instance.username = username;
         instance.password = password;
-        instance.pullEvents();
+        instance.pullEvents(ctx);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.schedulo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,6 +39,7 @@ public class Register extends AppCompatActivity {
         final String inputName = getName.getText().toString();
         final String inputPhone = getPhone.getText().toString();
         final String inputPass = getPass.getText().toString();
+        final Context ctx = this;
 
         // Serialize
         User newUser = new User(inputName, inputPhone, inputPass);
@@ -52,7 +54,7 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         System.out.println("\n\nSUCCESS\n\n" + response);
-                        MainActivity.newInstance(inputPhone, inputPass);
+                        MainActivity.newInstance(inputPhone, inputPass, ctx);
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         Register.this.startActivity(intent);
                     }
