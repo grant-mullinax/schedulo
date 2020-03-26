@@ -123,7 +123,7 @@ object Database {
         return managedQuery(
             "SELECT *\n" +
                     "FROM events\n" +
-                    "WHERE id = $id"
+                    "WHERE id='$id'"
         ) { rs ->
             val results = mutableListOf<IdEvent>()
             while(rs.next())
