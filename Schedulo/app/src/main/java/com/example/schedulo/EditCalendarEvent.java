@@ -85,7 +85,7 @@ public class EditCalendarEvent extends AppCompatActivity {
         }
 
         Event event = new Event(Color.RED, unixStart, name);
-        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
+        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd, null);
         MainActivity.getInstance().addEvent(calendarEvent, this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

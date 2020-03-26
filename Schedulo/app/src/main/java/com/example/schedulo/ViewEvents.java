@@ -2,8 +2,11 @@ package com.example.schedulo;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -31,7 +34,7 @@ public class ViewEvents extends AppCompatActivity {
         String prev = "";
         for(CalendarEvent e : events) {
             if(e.getStart() != -1 && e.getStartDate().compareTo(prev) != 0) {
-                returns.add(new CalendarEvent(e.getStartDate(), "", "", -1, -1));
+                returns.add(new CalendarEvent(e.getStartDate(), "", "", -1, -1, null));
                 prev = e.getStartDate();
             }
             returns.add(e);
@@ -48,5 +51,27 @@ public class ViewEvents extends AppCompatActivity {
         Intent intent = new Intent(this, EditCalendarEvent.class);
         EditCalendarEvent.setFields((CalendarEvent) view.getTag());
         startActivity(intent);
+    }
+
+    public void deleteEvent(View view) {
+        CalendarEvent e = (CalendarEvent) view.getTag();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete Event");
+        builder.setMessage("Are you sure you want to delete event " + e);
+        builder.setCancelable(true);
+        builder.setPositiveButton("Confirm",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
