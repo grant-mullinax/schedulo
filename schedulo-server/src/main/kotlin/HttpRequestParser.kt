@@ -53,14 +53,16 @@ object HttpRequestParser {
 
     fun editEvent(ctx: Context) {
         val user = getUserFromDetails(ctx)
-        val id = ctx.pathParam("id")
+        val id = UUID.fromString(ctx.pathParam("id"))
 
         val event = ctx.bodyValidator<Event>()
             .check({ it.start < it.end}, "Start time must be before end time")
             // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
             .get()
 
-        Database.updateEvent(IdEvent(UUID.fromString(id), event))
+
+        Database.updateEvent(IdEvent(id, event))
+        ctx.json(Database.getEvent(id))
     }
 
     fun getEvents(ctx: Context) {
