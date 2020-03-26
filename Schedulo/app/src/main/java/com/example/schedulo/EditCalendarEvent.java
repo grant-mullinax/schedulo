@@ -18,6 +18,7 @@ import java.time.ZoneOffset;
 
 public class EditCalendarEvent extends AppCompatActivity {
     static CalendarEvent event;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,9 @@ public class EditCalendarEvent extends AppCompatActivity {
             ((EditText) findViewById(R.id.eventEndDateBox)).setText(event.getEndDate());
             ((EditText) findViewById(R.id.eventStartTimeBox)).setText(event.getStartTime());
             ((EditText) findViewById(R.id.eventEndTimeBox)).setText(event.getEndTime());
+            id = event.getId();
+        } else {
+            id = null;
         }
     }
 
@@ -84,8 +88,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             return;
         }
 
-        Event event = new Event(Color.RED, unixStart, name);
-        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
+        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd, id);
         MainActivity.getInstance().addEvent(calendarEvent, this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

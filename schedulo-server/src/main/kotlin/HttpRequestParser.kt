@@ -40,8 +40,7 @@ object HttpRequestParser {
             // .check({ it.start.isAfter(Instant.now().minusSeconds(5)) }, "Start time must be in the future.")
             .get()
 
-        Database.createEventForUser(event, user)
-        ctx.json(SimpleResponse("event created"))
+        ctx.json(Database.createEventForUser(event, user))
     }
 
     fun deleteEvent(ctx: Context) {

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -38,14 +40,25 @@ import static java.util.EnumSet.copyOf;
     private static MainActivity instance = null;
 
     private List<CalendarEvent> events;
-    static String username, password;
+    private String username, password;
 
     CompactCalendarView compactCalendar;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public MainActivity() { events = new ArrayList<>(); }
 
-    public static void newInstance() {
+    public static void newInstance(String username, String password, Context ctx) {
         instance = new MainActivity();
+        instance.username = username;
+        instance.password = password;
+        instance.pullEvents(ctx);
     }
 
     @Override
@@ -66,12 +79,31 @@ import static java.util.EnumSet.copyOf;
         return instance;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    public void deleteEvent(CalendarEvent event, Context ctx) {
+        final CalendarEvent eventT = event;
+        RequestQueue queue = Volley.newRequestQueue(ctx);
+        StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, SERVER_URL+"/"+event.getId(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        events.remove(eventT);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("password", password);
 
-    public void setPassword(String password) {
-        this.password = password;
+                return params;
+            }
+        };
+        queue.add(deleteRequest);
     }
 
     public void addEvent(CalendarEvent event, Context ctx) {
@@ -85,15 +117,26 @@ import static java.util.EnumSet.copyOf;
             json.put("location", event.getLocation());
             json.put("start", event.getStart());
             json.put("end", event.getEnd());
-        } catch(Exception e) { events.add(new CalendarEvent(e.getMessage(), "", "", -1, -1)); return; }
+        } catch(Exception e) { events.add(new CalendarEvent(e.getMessage(), "", "", -1, -1, null)); return; }
 
         final CalendarEvent eventT = event;
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, SERVER_URL, json,
+        String url = SERVER_URL;
+        int type = Request.Method.POST;
+        if(event.getId() != null) {
+            url += "/" + event.getId();
+            type = Request.Method.PUT;
+            events.remove(event);
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(type, url, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        events.add(eventT);
+                        try {
+                            eventT.setId(response.getString("id"));
+                            events.add(eventT);
+                        } catch(JSONException e) { }
                     }
                 },
                 new Response.ErrorListener() {
@@ -117,7 +160,7 @@ import static java.util.EnumSet.copyOf;
         events.clear();
 
         RequestQueue queue = Volley.newRequestQueue(ctx);
-        events.add(new CalendarEvent("loading", "", "", -1, -1));
+        events.add(new CalendarEvent("loading", "", "", -1, -1, null));
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, SERVER_URL, null,
                 new Response.Listener<JSONArray>() {
@@ -128,10 +171,10 @@ import static java.util.EnumSet.copyOf;
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject event = response.getJSONObject(i);
                                 events.add(new CalendarEvent(event.getString("name"), event.getString("description"),
-                                        event.getString("location"), event.getLong("start"), event.getLong("end")));
+                                        event.getString("location"), event.getLong("start"), event.getLong("end"), event.getString("id")));
                             }
                         } catch(Exception e) {
-                            events.add(new CalendarEvent("error getting events", "", "", -1, -1));
+                            events.add(new CalendarEvent("error getting events", "", "", -1, -1, null));
                         }
                     }
                 },
@@ -139,7 +182,7 @@ import static java.util.EnumSet.copyOf;
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         events.clear();
-                        events.add(new CalendarEvent("error getting events", "", "", -1, -1));
+                        events.add(new CalendarEvent("error getting events", "", "", -1, -1, null));
                     }
                 }) {
             @Override

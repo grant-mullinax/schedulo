@@ -45,10 +45,7 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // action
-                        MainActivity.newInstance();
-                        MainActivity.getInstance().setUsername(inputPhone);
-                        MainActivity.getInstance().setPassword(inputPass);
-                        MainActivity.getInstance().pullEvents(ctx);
+                        MainActivity.newInstance(inputPhone, inputPass, ctx);
                         Intent intent = new Intent(Login.this, MainActivity.class);
                         Login.this.startActivity(intent);
                     }
