@@ -36,7 +36,7 @@ public class CalendarAdapter extends ArrayAdapter<CalendarEvent> {
         row = inflater.inflate(R.layout.list_item, parent, false);
 
         Button name = (Button)row.findViewById(R.id.go_to_view);
-        Button delete = (Button)row.findViewById(R.id.go_to_view);
+        Button delete = (Button)row.findViewById(R.id.delete_event);
         name.setText(item.getName());
         name.setTag(item);
         delete.setTag(item);

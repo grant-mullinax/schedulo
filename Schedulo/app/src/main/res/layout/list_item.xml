@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toRightOf="parent" />
 
     <Button
-        android:id="@+id/deleteEvent"
+        android:id="@+id/delete_event"
         android:layout_width="100dp"
         android:layout_height="fill_parent"
         android:contentDescription=""

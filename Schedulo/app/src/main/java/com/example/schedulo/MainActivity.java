@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,9 +40,17 @@ import static java.util.EnumSet.copyOf;
     private static MainActivity instance = null;
 
     private List<CalendarEvent> events;
-    static String username, password;
+    private String username, password;
 
     CompactCalendarView compactCalendar;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     public MainActivity() { events = new ArrayList<>(); }
 
@@ -70,6 +79,33 @@ import static java.util.EnumSet.copyOf;
         return instance;
     }
 
+    public void deleteEvent(CalendarEvent event, Context ctx) {
+        final CalendarEvent eventT = event;
+        RequestQueue queue = Volley.newRequestQueue(ctx);
+        StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, SERVER_URL+"/"+event.getId(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        events.remove(eventT);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("username", username);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+        queue.add(deleteRequest);
+    }
+
     public void addEvent(CalendarEvent event, Context ctx) {
 
         RequestQueue queue = Volley.newRequestQueue(ctx);
@@ -85,7 +121,15 @@ import static java.util.EnumSet.copyOf;
 
         final CalendarEvent eventT = event;
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, SERVER_URL, json,
+        String url = SERVER_URL;
+        int type = Request.Method.POST;
+        if(event.getId() != null) {
+            url += "/" + event.getId();
+            type = Request.Method.PUT;
+            events.remove(event);
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(type, url, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

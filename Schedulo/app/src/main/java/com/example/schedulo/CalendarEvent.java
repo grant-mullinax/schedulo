@@ -44,6 +44,9 @@ class CalendarEvent implements Comparable<CalendarEvent> {
         this.end = end;
     }
 
+    public String getId() {
+        return id;
+    }
     public String getName() { return name; }
     public String getLocation() { return location; }
     public String getDescription() { return description; }
@@ -61,5 +64,11 @@ class CalendarEvent implements Comparable<CalendarEvent> {
     public int compareTo(CalendarEvent o) {
         if(o.start != start) return Long.compare(start, o.start);
         return name.compareTo(o.name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!o.getClass().equals(this.getClass())) return false;
+        return this.compareTo((CalendarEvent)o) == 0;
     }
 }
