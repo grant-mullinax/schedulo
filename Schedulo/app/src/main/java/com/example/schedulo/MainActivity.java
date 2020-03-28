@@ -80,13 +80,13 @@ import static java.util.EnumSet.copyOf;
     }
 
     public void deleteEvent(CalendarEvent event, Context ctx) {
-        final CalendarEvent eventT = event;
+        final Context ctx2 = ctx;
         RequestQueue queue = Volley.newRequestQueue(ctx);
         StringRequest deleteRequest = new StringRequest(Request.Method.DELETE, SERVER_URL+"/"+event.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        events.remove(eventT);
+                        MainActivity.getInstance().pullEvents(ctx2);
                     }
                 },
                 new Response.ErrorListener() {
@@ -107,9 +107,8 @@ import static java.util.EnumSet.copyOf;
     }
 
     public void addEvent(CalendarEvent event, Context ctx) {
-
+        final Context ctx2 = ctx;
         RequestQueue queue = Volley.newRequestQueue(ctx);
-
         JSONObject json = new JSONObject();
         try {
             json.put("name", event.getName());
@@ -125,18 +124,15 @@ import static java.util.EnumSet.copyOf;
         int type = Request.Method.POST;
         if(event.getId() != null) {
             url += "/" + event.getId();
+            Log.d("dsadsad", event.getId());
             type = Request.Method.PUT;
-            events.remove(event);
         }
-
+        Log.d("dsadsad", json.toString());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(type, url, json,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            eventT.setId(response.getString("id"));
-                            events.add(eventT);
-                        } catch(JSONException e) { }
+                        MainActivity.getInstance().pullEvents(ctx2);
                     }
                 },
                 new Response.ErrorListener() {

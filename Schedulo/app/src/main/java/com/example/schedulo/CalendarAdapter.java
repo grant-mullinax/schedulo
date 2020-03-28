@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class CalendarAdapter extends ArrayAdapter<CalendarEvent> {
+
     public CalendarAdapter(Context context, int resource, CalendarEvent[] objects) {
         super(context, resource, objects);
         this.context = context;
