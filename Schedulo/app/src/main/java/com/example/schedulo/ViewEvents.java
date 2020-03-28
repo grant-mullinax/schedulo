@@ -78,6 +78,8 @@ public class ViewEvents extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         MainActivity.getInstance().deleteEvent(e, ctx);
+                        Intent intent = new Intent(ctx, MainActivity.class);
+                        startActivity(intent);
                     }
                 });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
