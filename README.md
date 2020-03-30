@@ -226,7 +226,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
 * Automated Tests
     * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
-    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java) - Added tests for setUpEvents and start and end date and time
-    * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt) - Added test for unique user validation
+    * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
+    * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
     * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java)
-* [Demonstration](https://youtu.be/7k0LiormXYw)
+* Demonstration
