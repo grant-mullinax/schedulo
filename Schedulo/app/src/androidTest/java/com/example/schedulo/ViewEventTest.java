@@ -51,13 +51,13 @@ public class ViewEventTest {
                 .perform(typeText(password), closeSoftKeyboard());
         onView(withId(R.id.login))
                 .perform(click());
-        onView(withId(R.id.view)).perform(click());
+        onView(withId(R.id.eventList)).perform(click());
         onView(withId(R.id.back)).check(matches(isDisplayed()));
     }
 
     @Test
     public void clickEventTest() {
-        onView(withId(R.id.view)).perform(click());
+        onView(withId(R.id.eventList)).perform(click());
         onView(withId(R.id.go_to_view)).perform(click());
         onView(withId(R.id.addEventButton)).check(matches(isDisplayed()));
         onView(withId(R.id.addEventButton)).perform(click());
