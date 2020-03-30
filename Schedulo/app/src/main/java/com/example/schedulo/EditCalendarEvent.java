@@ -15,6 +15,7 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.Date;
 
 public class EditCalendarEvent extends AppCompatActivity {
     static CalendarEvent event;
@@ -113,6 +114,35 @@ public class EditCalendarEvent extends AppCompatActivity {
         String startTime = eventStartTimeBox.getText().toString();
         String endDate = eventEndDateBox.getText().toString();
         String endTime = eventEndTimeBox.getText().toString();
+
+        if (name == null)
+        {
+            name = "";
+        }
+        if (description == null)
+        {
+            description = "";
+        }
+        if (location == null)
+        {
+            location = "";
+        }
+        if (startDate == null)
+        {
+            startDate = new Date().toString();
+        }
+        if (startTime == null)
+        {
+            startTime = "00:00";
+        }
+        if (endDate == null)
+        {
+            endDate = startDate;
+        }
+        if (endDate == null)
+        {
+            endTime = startTime;
+        }
 
         intent.putExtra("name", name);
         intent.putExtra("description", description);
