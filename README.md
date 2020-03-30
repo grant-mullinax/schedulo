@@ -205,6 +205,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Sam
 
 * Grant 
+   * Added response to edit method
+   * Begun work on managment/groups feature
 
 * Andy
    * Redirect to main page after delete and update
