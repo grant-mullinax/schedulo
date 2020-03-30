@@ -18,6 +18,7 @@ import java.time.ZoneOffset;
 
 public class EditCalendarEvent extends AppCompatActivity {
     static CalendarEvent event;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,10 @@ public class EditCalendarEvent extends AppCompatActivity {
             ((EditText) findViewById(R.id.eventEndDateBox)).setText(event.getEndDate());
             ((EditText) findViewById(R.id.eventStartTimeBox)).setText(event.getStartTime());
             ((EditText) findViewById(R.id.eventEndTimeBox)).setText(event.getEndTime());
+            ((Button) findViewById(R.id.addEventButton)).setText("Update Event");
+            id = event.getId();
+        } else {
+            id = null;
         }
     }
 
@@ -39,6 +44,7 @@ public class EditCalendarEvent extends AppCompatActivity {
     }
 
     public long converter(String date, String time, String toggle) {
+        Log.d("dsadsad", toggle);
         try {
             String month, day, year, hour, minute;
             month = date.substring(0, date.indexOf('/'));
@@ -59,9 +65,8 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText getLoc = findViewById(R.id.eventLocationBox);
         EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
-        EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
-        EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
-
+        EditText eventEndDateBox = findViewById(R.id.eventEndDateBox);
+        EditText eventEndTimeBox = findViewById(R.id.eventEndTimeBox);
         ToggleButton startToggle = findViewById(R.id.toggleButtonStart);
         ToggleButton endToggle = findViewById(R.id.toggleButtonEnd);
 
@@ -84,8 +89,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             return;
         }
 
-        Event event = new Event(Color.RED, unixStart, name);
-        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd);
+        CalendarEvent calendarEvent = new CalendarEvent(name, description, location, unixStart, unixEnd, id);
         MainActivity.getInstance().addEvent(calendarEvent, this);
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);

@@ -3,10 +3,10 @@ package com.example.schedulo;
 import java.time.Instant;
 
 class CalendarEvent implements Comparable<CalendarEvent> {
-    private String name, description, location, startDate, endDate, startTime, endTime;
+    private String name, description, location, startDate, endDate, startTime, endTime, id;
     private long start, end;
 
-    public CalendarEvent (String name, String description, String location, long start, long end) {
+    public CalendarEvent (String name, String description, String location, long start, long end, String id) {
         this.name = name;
         this. description = description;
         this.location = location;
@@ -22,6 +22,11 @@ class CalendarEvent implements Comparable<CalendarEvent> {
         endDate = endDate.substring(5, 7) + "/" + endDate.substring(8, 10) + "/" + endDate.substring(0, 4);
         endTime = iso.substring(iso.indexOf("T")+1, iso.indexOf("Z"));
         endTime = endTime.substring(0, 5);
+        this.id = id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
     public void setName (String name) {
         this.name = name;
@@ -39,6 +44,9 @@ class CalendarEvent implements Comparable<CalendarEvent> {
         this.end = end;
     }
 
+    public String getId() {
+        return id;
+    }
     public String getName() { return name; }
     public String getLocation() { return location; }
     public String getDescription() { return description; }
@@ -56,5 +64,11 @@ class CalendarEvent implements Comparable<CalendarEvent> {
     public int compareTo(CalendarEvent o) {
         if(o.start != start) return Long.compare(start, o.start);
         return name.compareTo(o.name);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!o.getClass().equals(this.getClass())) return false;
+        return this.compareTo((CalendarEvent)o) == 0;
     }
 }

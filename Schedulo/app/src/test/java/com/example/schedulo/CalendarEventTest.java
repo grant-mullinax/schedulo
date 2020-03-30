@@ -11,7 +11,7 @@ public class CalendarEventTest {
 
     @Test
     public void constructorTest() {
-        CalendarEvent event = new CalendarEvent("test", "test desc", "test loc", 0, 1);
+        CalendarEvent event = new CalendarEvent("test", "test desc", "test loc", 0, 1, "1");
         assert(event.getName().equals("test"));
         assert(event.getDescription().equals("test desc"));
         assert(event.getLocation().equals("test loc"));

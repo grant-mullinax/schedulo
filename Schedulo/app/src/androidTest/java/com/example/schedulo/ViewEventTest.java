@@ -31,20 +31,32 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ViewEventTest {
+    private String username, password;
 
     @Rule
-    public ActivityTestRule<MainActivity> activityRule
-            = new ActivityTestRule<>(MainActivity.class);
+    public ActivityTestRule<Login> activityRule
+            = new ActivityTestRule<>(Login.class);
+
+    @Before
+    public void initCredentials() {
+        username = "1234";
+        password = "4321";
+    }
 
     @Test
     public void viewEventTest() {
+        onView(withId(R.id.number))
+                .perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.password))
+                .perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.login))
+                .perform(click());
         onView(withId(R.id.view)).perform(click());
         onView(withId(R.id.back)).check(matches(isDisplayed()));
     }
 
     @Test
     public void clickEventTest() {
-        MainActivity.events.add(new CalendarEvent("test", "", "", 0, 0));
         onView(withId(R.id.view)).perform(click());
         onView(withId(R.id.go_to_view)).perform(click());
         onView(withId(R.id.addEventButton)).check(matches(isDisplayed()));

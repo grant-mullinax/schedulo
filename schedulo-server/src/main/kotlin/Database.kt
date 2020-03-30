@@ -119,6 +119,29 @@ object Database {
         )
     }
 
+    fun getEvent(id: UUID): IdEvent {
+        return managedQuery(
+            "SELECT *\n" +
+                    "FROM events\n" +
+                    "WHERE id='$id'"
+        ) { rs ->
+            val results = mutableListOf<IdEvent>()
+            while(rs.next())
+            {
+                results.add(IdEvent(
+                    UUID.fromString(rs.getString("id")),
+                    rs.getString("title"),
+                    rs.getString("descr"),
+                    rs.getString("loc"),
+                    rs.getLong("start_time"),
+                    rs.getLong("end_time")
+                ))
+            }
+
+            return@managedQuery results.toList()
+        }.first()
+    }
+
     fun updateEvent(event: IdEvent): Int {
         val connection = DriverManager.getConnection(connectionUrl)
 
