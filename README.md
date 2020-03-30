@@ -214,7 +214,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
    * Fix register issue
 
 * Andres
-
+    * Worked on adding sidebar for navigation
+    * Upload demonstration
 
 * [Sprint Backlog](https://docs.google.com/spreadsheets/d/1WA1FlVTJni7GUQFl0b-y6quCHUnMSNcDjcW2Qbvj9tE/)
 * [Requirements](https://github.com/grant-mullinax/schedulo/blob/master/artifacts/requirements.md)
@@ -232,4 +233,4 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
     * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
     * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java)
-* Demonstration
+* [Demonstration](https://youtu.be/RqFtgo2KSrU)
