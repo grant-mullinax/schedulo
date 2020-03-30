@@ -1,12 +1,15 @@
 package com.example.schedulo;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -44,6 +47,9 @@ import static java.util.EnumSet.copyOf;
 
     CompactCalendarView compactCalendar;
 
+    private DrawerLayout sidebarLayout;
+    private ActionBarDrawerToggle sidebarToggle;
+
     public String getUsername() {
         return username;
     }
@@ -66,13 +72,26 @@ import static java.util.EnumSet.copyOf;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ActionBar actionbar = getSupportActionBar();
-        actionbar.setDisplayHomeAsUpEnabled(false);
-        actionbar.setTitle(null);
+        sidebarLayout = (DrawerLayout) findViewById(R.id.activity_main);
+        sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close);
+
+        sidebarLayout.addDrawerListener(sidebarToggle);
+        sidebarToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         compactCalendar =  (CompactCalendarView) findViewById(R.id.calendar);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(sidebarToggle.onOptionsItemSelected(item))
+            return true;
+
+        return super.onOptionsItemSelected(item);
     }
 
     public static MainActivity getInstance() {
@@ -204,13 +223,13 @@ import static java.util.EnumSet.copyOf;
         startActivity(intent);
     }
 
-    public void LogOut(View view) {
+    public void LogOut(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, Login.class);
         instance = null;
         MainActivity.this.startActivity(intent);
     }
 
-    public void ViewEvents(View view) {
+    public void ViewEvents(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, ViewEvents.class);
         MainActivity.this.startActivity(intent);
     }

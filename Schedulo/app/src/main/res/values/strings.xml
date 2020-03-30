@@ -25,4 +25,6 @@
     <string name="button_send">Share Event</string>
     <string name="recipient_prompt">To</string>
     <string name="recipient_hint">user1, user2, etc.</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
