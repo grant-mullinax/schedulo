@@ -211,7 +211,8 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 * Andy
    * Redirect to main page after delete and update
    * Add update and delete features
-   * Fix register issue
+   * Fix register issue and broken tests
+   * Add phone number validation
 
 * Andres
     * Worked on adding sidebar for navigation
@@ -229,7 +230,7 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
     * [App](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/main/java/com/example/schedulo)
     * [Server](https://github.com/grant-mullinax/schedulo/tree/master/schedulo-server)
 * Automated Tests
-    * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo)
+    * [Login](https://github.com/grant-mullinax/schedulo/tree/master/Schedulo/app/src/androidTest/java/com/example/schedulo) - Fix broken tests.
     * [Calendar Event](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/test/java/com/example/schedulo/CalendarEventTest.java)
     * [Server Actions](https://github.com/grant-mullinax/schedulo/blob/master/schedulo-server/src/test/kotlin/UserManagerTestSuite.kt)
     * [View Events](https://github.com/grant-mullinax/schedulo/blob/master/Schedulo/app/src/androidTest/java/com/example/schedulo/ViewEventTest.java)
