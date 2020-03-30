@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
+
 import static java.util.EnumSet.copyOf;
 
 
@@ -72,11 +73,11 @@ import static java.util.EnumSet.copyOf;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sidebarLayout = (DrawerLayout) findViewById(R.id.activity_main);
-        sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close);
+         sidebarLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+         sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close);
 
-        sidebarLayout.addDrawerListener(sidebarToggle);
-        sidebarToggle.syncState();
+         sidebarLayout.addDrawerListener(sidebarToggle);
+         sidebarToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
