@@ -10,5 +10,5 @@
 | 006 | 002 | The app should be able to add events to the calendar | 5 | Necessary | Verified |
 | 007 | 003 | The app should be able to communicate with other instances of the app | 3 | Necessary | Not Started |
 | 008 | 003 | The app should be able to make calendars visible to other instances of the app | 3 | Necessary | Verified |
-| 009 | 002 | The app should be able to delete events from the calendar | 2 | Necessary | Verified |
-| 010 | 002 | The app should be able to update existing events | 2 | Necessary | Verified |
+| 009 | 020 | The app should be able to delete events from the calendar | 2 | Necessary | Verified |
+| 010 | 021 | The app should be able to update existing events | 2 | Necessary | Verified |
