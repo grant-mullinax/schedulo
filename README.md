@@ -203,7 +203,9 @@ Schedulo is for anyone who is busy and need to organize their schedules easily a
 ## Sprint 8
 ### Responsibilities
 * Sam
-
+   * Cleaned up general application flow
+   * Debugging event sharing
+   
 * Grant 
    * Added response to edit method
    * Begun work on managment/groups feature
