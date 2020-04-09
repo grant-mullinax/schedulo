@@ -10,31 +10,21 @@
         android:id="@+id/eventNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/eventDateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="sans-serif-condensed-light"
-        app:layout_constraintStart_toStartOf="@+id/eventNameText"
-        app:layout_constraintTop_toBottomOf="@+id/eventNameText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
         android:id="@+id/eventLocText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:fontFamily="sans-serif-condensed-light"
-        app:layout_constraintStart_toStartOf="@+id/eventDateText"
-        app:layout_constraintTop_toBottomOf="@+id/eventDateText" />
+        app:layout_constraintStart_toStartOf="@+id/eventNameText"
+        app:layout_constraintTop_toBottomOf="@+id/eventNameText" />
 
     <TextView
         android:id="@+id/eventDescText"
@@ -48,10 +38,10 @@
         android:id="@+id/recipientPromptText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/recipient_prompt"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/eventDescText"
-        app:layout_constraintTop_toBottomOf="@+id/eventDescText" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/recipientBox"
@@ -71,8 +61,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
+        android:onClick="sendEvent"
         android:text="@string/button_send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipientBox" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:onClick="back"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

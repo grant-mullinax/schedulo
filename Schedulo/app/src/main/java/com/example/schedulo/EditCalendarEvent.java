@@ -35,6 +35,9 @@ public class EditCalendarEvent extends AppCompatActivity {
             ((EditText) findViewById(R.id.eventEndTimeBox)).setText(event.getEndTime());
             ((Button) findViewById(R.id.addEventButton)).setText("Update Event");
             id = event.getId();
+            System.out.println(id);
+            Button shareButton = findViewById(R.id.sendButton);
+            shareButton.setVisibility(View.VISIBLE);
         } else {
             id = null;
         }
@@ -106,51 +109,69 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
         EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
+        ToggleButton startToggle = findViewById(R.id.toggleButtonStart);
+        ToggleButton endToggle = findViewById(R.id.toggleButtonEnd);
 
-        String name = getName.getText().toString();
-        String description = getDesc.getText().toString();
-        String location = getLoc.getText().toString();
-        String startDate = eventStartDateBox.getText().toString();
-        String startTime = eventStartTimeBox.getText().toString();
-        String endDate = eventEndDateBox.getText().toString();
-        String endTime = eventEndTimeBox.getText().toString();
+        String name;
+        String description;
+        String location;
+        String startDate;
+        String startTime;
+        String endDate;
+        String endTime;
 
-        if (name == null)
-        {
-            name = "";
+        if (getName.getText() == null) {
+            name = "Unnamed Event";
+        } else {
+            name = getName.getText().toString();
         }
-        if (description == null)
-        {
+        if (getDesc.getText() == null) {
             description = "";
+        } else {
+            description = getDesc.getText().toString();
         }
-        if (location == null)
-        {
+        if (getLoc.getText() == null) {
             location = "";
+        } else {
+            location = getLoc.getText().toString();
         }
-        if (startDate == null)
-        {
+        if (eventStartDateBox.getText() == null) {
             startDate = new Date().toString();
+        } else {
+            startDate = eventStartDateBox.getText().toString();
         }
-        if (startTime == null)
-        {
+        if (eventStartTimeBox.getText() == null) {
             startTime = "00:00";
+        } else {
+            startTime = eventStartTimeBox.getText().toString();
         }
-        if (endDate == null)
-        {
+        if (eventEndDateBox.getText() == null) {
             endDate = startDate;
+        } else {
+            endDate = eventEndDateBox.getText().toString();
         }
-        if (endDate == null)
-        {
+        if (eventEndTimeBox.getText() == null) {
             endTime = startTime;
+        } else {
+            endTime = eventEndTimeBox.getText().toString();
         }
 
-        intent.putExtra("name", name);
-        intent.putExtra("description", description);
-        intent.putExtra("location", location);
-        intent.putExtra("startDate", startDate);
-        intent.putExtra("startTime", startTime);
-        intent.putExtra("endDate", endDate);
-        intent.putExtra("endTime", endTime);
+        long unixStart, unixEnd;
+        unixStart = converter(startDate, startTime, startToggle.getText().toString());
+        unixEnd = converter(endDate, endTime, endToggle.getText().toString());
+
+        Log.d("CREATATAT", startDate + " " + endDate);
+
+        if(unixStart == -1 || unixEnd == -1) {
+            return;
+        }
+
+        intent.putExtra("name", "" + name);
+        intent.putExtra("description", "" + description);
+        intent.putExtra("location", "" + location);
+        intent.putExtra("startTime", "" + unixStart);
+        intent.putExtra("endTime", "" + unixEnd);
+        intent.putExtra("id", id);
 
         EditCalendarEvent.this.startActivity(intent);
     }

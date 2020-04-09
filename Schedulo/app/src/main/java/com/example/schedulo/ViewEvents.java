@@ -38,9 +38,7 @@ public class ViewEvents extends AppCompatActivity {
         CalendarEvent[] events = {};
         try {
             events = setupEvents(MainActivity.getInstance().getEvents());
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             TextView failMessage = findViewById(R.id.failureMessage);
             failMessage.setText("No Events found.");
             System.out.println(e);
@@ -71,6 +69,7 @@ public class ViewEvents extends AppCompatActivity {
     }
 
     public void editEvent(View view) {
+        CalendarEvent e = (CalendarEvent) view.getTag();
         Intent intent = new Intent(this, EditCalendarEvent.class);
         EditCalendarEvent.setFields((CalendarEvent) view.getTag());
         startActivity(intent);

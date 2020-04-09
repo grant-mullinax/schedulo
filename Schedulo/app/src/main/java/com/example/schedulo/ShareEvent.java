@@ -23,28 +23,30 @@ import java.util.StringTokenizer;
 
 public class ShareEvent extends AppCompatActivity {
     private final String SERVER_URL = "http://10.0.2.2:7000/events";
-
-    Intent intent = getIntent();
-    final String name = intent.getStringExtra("name");
-    final String description = intent.getStringExtra("description");
-    final String location = intent.getStringExtra("location");
-    final String startDate = intent.getStringExtra("startDate");
-    final String startTime = intent.getStringExtra("startTime");
-    final String endDate = intent.getStringExtra("endDate");
-    final String endTime = intent.getStringExtra("endTime");
-
+    String name;
+    String description;
+    String location;
+    String startTime;
+    String endTime;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_share_event);
 
+        Intent intent = getIntent();
+        name = intent.getStringExtra("name");
+        description = intent.getStringExtra("description");
+        location = intent.getStringExtra("location");
+        startTime = intent.getStringExtra("startTime");
+        endTime = intent.getStringExtra("endTime");
+        id = intent.getStringExtra("id");
+
         TextView nameView = findViewById(R.id.eventNameText);
-        TextView dateView = findViewById(R.id.eventDateText);
         TextView locView = findViewById(R.id.eventLocText);
         TextView descView = findViewById(R.id.eventDescText);
 
         nameView.setText(name);
-        dateView.setText(startDate);
         locView.setText(location);
         descView.setText(description);
     }
@@ -65,22 +67,14 @@ public class ShareEvent extends AppCompatActivity {
     }
 
     public void sendEvent(View view) {
-        final long unixStart = converter(startDate, startTime);
-        final long unixEnd = converter(endDate, endTime);
-
-        if(unixStart == -1 || unixEnd == -1) {
-            return;
-        }
-
         TextView recipientBox = findViewById(R.id.recipientBox);
         String recipients = recipientBox.getText().toString();
         final StringTokenizer getRecipients = new StringTokenizer(recipients, ", ", false);
-        ArrayList<String> recipientsList = new ArrayList<String>();
-
         while (getRecipients.hasMoreTokens()) {
-
+            final String user = getRecipients.nextToken();
+            String url = "http://10.0.2.2:7000/users/" + user + "/" + id;
             RequestQueue queue = Volley.newRequestQueue(this);
-            StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
+            StringRequest putRequest = new StringRequest(Request.Method.PUT, url,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -98,18 +92,24 @@ public class ShareEvent extends AppCompatActivity {
                 @Override
                 public Map<String, String> getHeaders() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("name", name);
-                    params.put("description", description);
-                    params.put("location", location);
-                    params.put("start", String.valueOf(unixStart));
-                    params.put("end", String.valueOf(unixEnd));
-                    params.put("user", getRecipients.nextToken());
+                    params.put("username", user);
+                    params.put("eventid", id);
 
                     return params;
                 }
             };
-            queue.add(postRequest);
+            queue.add(putRequest);
         }
+
+        Intent intent = new Intent(ShareEvent.this, MainActivity.class);
+        ShareEvent.this.startActivity(intent);
+    }
+
+    public void back(View view) {
+        Intent intent = new Intent(ShareEvent.this, EditCalendarEvent.class);
+        ShareEvent.this.startActivity(intent);
     }
 
 }
+
+

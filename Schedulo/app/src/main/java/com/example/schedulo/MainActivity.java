@@ -44,7 +44,7 @@ import static java.util.EnumSet.copyOf;
     private static MainActivity instance = null;
 
     private List<CalendarEvent> events;
-    private String username, password;
+    private String username, password, returnId;
 
     CompactCalendarView compactCalendar;
 
@@ -126,7 +126,7 @@ import static java.util.EnumSet.copyOf;
         queue.add(deleteRequest);
     }
 
-    public void addEvent(CalendarEvent event, Context ctx) {
+    public String addEvent(CalendarEvent event, Context ctx) {
         final Context ctx2 = ctx;
         RequestQueue queue = Volley.newRequestQueue(ctx);
         JSONObject json = new JSONObject();
@@ -136,7 +136,7 @@ import static java.util.EnumSet.copyOf;
             json.put("location", event.getLocation());
             json.put("start", event.getStart());
             json.put("end", event.getEnd());
-        } catch(Exception e) { events.add(new CalendarEvent(e.getMessage(), "", "", -1, -1, null)); return; }
+        } catch(Exception e) { events.add(new CalendarEvent(e.getMessage(), "", "", -1, -1, null)); return null; }
 
         final CalendarEvent eventT = event;
 
@@ -153,6 +153,11 @@ import static java.util.EnumSet.copyOf;
                     @Override
                     public void onResponse(JSONObject response) {
                         MainActivity.getInstance().pullEvents(ctx2);
+                        try {
+                            returnId = response.getString("id");
+                        } catch (Exception e) {
+                            returnId = null;
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -170,6 +175,8 @@ import static java.util.EnumSet.copyOf;
             }
         };
         queue.add(jsonObjectRequest);
+
+        return returnId;
     }
 
     public void pullEvents(Context ctx) {
