@@ -92,8 +92,8 @@ public class ShareEvent extends AppCompatActivity {
                 @Override
                 public Map<String, String> getHeaders() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("username", user);
-                    params.put("eventid", id);
+                    params.put("username", MainActivity.getInstance().getUsername());
+                    params.put("password", MainActivity.getInstance().getPassword());
 
                     return params;
                 }
