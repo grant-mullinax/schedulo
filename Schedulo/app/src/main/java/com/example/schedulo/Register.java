@@ -39,45 +39,53 @@ public class Register extends AppCompatActivity {
         final String inputName = getName.getText().toString();
         final String inputPhone = getPhone.getText().toString();
         final String inputPass = getPass.getText().toString();
-        final Context ctx = this;
-
-        // Serialize
-        User newUser = new User(inputName, inputPhone, inputPass);
-        Gson gson = new Gson();
-        final String userString = gson.toJson(newUser);
-
-        // Post to server
         final TextView textView = findViewById(R.id.textView);
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        System.out.println("\n\nSUCCESS\n\n" + response);
-                        MainActivity.newInstance(inputPhone, inputPass, ctx);
-                        Intent intent = new Intent(Register.this, MainActivity.class);
-                        Register.this.startActivity(intent);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        System.out.println("\n\nERROR\n\n" + error.toString());
-                        textView.setText("Could not complete request at this time.");
-                        Intent intent = new Intent(Register.this, Login.class);
-                        Register.this.startActivity(intent);
 
-                    }
-                }) {
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("username", inputPhone);
-                params.put("password", inputPass);
+        if (inputPhone.length() < 8 || inputPhone.length() > 25) {
+            textView.setText("Phone number must have 8 to 25 digits.");
+           // Intent intent = new Intent(Register.this, Register.class);
+           // Register.this.startActivity(intent);
+        }
+        else {
+            final Context ctx = this;
 
-                return params;
-            }
-        };
-        queue.add(postRequest);
+            // Serialize
+            User newUser = new User(inputName, inputPhone, inputPass);
+            Gson gson = new Gson();
+            final String userString = gson.toJson(newUser);
+
+            // Post to server
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest postRequest = new StringRequest(Request.Method.POST, SERVER_URL,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            System.out.println("\n\nSUCCESS\n\n" + response);
+                            MainActivity.newInstance(inputPhone, inputPass, ctx);
+                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            Register.this.startActivity(intent);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            System.out.println("\n\nERROR\n\n" + error.toString());
+                            textView.setText("Could not complete request at this time.");
+                            Intent intent = new Intent(Register.this, MainActivity.class);
+                            Register.this.startActivity(intent);
+
+                        }
+                    }) {
+                @Override
+                public Map<String, String> getHeaders() {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("username", inputPhone);
+                    params.put("password", inputPass);
+
+                    return params;
+                }
+            };
+            queue.add(postRequest);
+        }
     }
 }

@@ -15,6 +15,7 @@ import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.Date;
 
 public class EditCalendarEvent extends AppCompatActivity {
     static CalendarEvent event;
@@ -32,6 +33,7 @@ public class EditCalendarEvent extends AppCompatActivity {
             ((EditText) findViewById(R.id.eventEndDateBox)).setText(event.getEndDate());
             ((EditText) findViewById(R.id.eventStartTimeBox)).setText(event.getStartTime());
             ((EditText) findViewById(R.id.eventEndTimeBox)).setText(event.getEndTime());
+            ((Button) findViewById(R.id.addEventButton)).setText("Update Event");
             id = event.getId();
         } else {
             id = null;
@@ -43,6 +45,7 @@ public class EditCalendarEvent extends AppCompatActivity {
     }
 
     public long converter(String date, String time, String toggle) {
+        Log.d("dsadsad", toggle);
         try {
             String month, day, year, hour, minute;
             month = date.substring(0, date.indexOf('/'));
@@ -63,9 +66,8 @@ public class EditCalendarEvent extends AppCompatActivity {
         EditText getLoc = findViewById(R.id.eventLocationBox);
         EditText eventStartDateBox = findViewById(R.id.eventStartDateBox);
         EditText eventStartTimeBox = findViewById(R.id.eventStartTimeBox);
-        EditText eventEndDateBox = findViewById(R.id.eventStartDateBox);
-        EditText eventEndTimeBox = findViewById(R.id.eventStartTimeBox);
-
+        EditText eventEndDateBox = findViewById(R.id.eventEndDateBox);
+        EditText eventEndTimeBox = findViewById(R.id.eventEndTimeBox);
         ToggleButton startToggle = findViewById(R.id.toggleButtonStart);
         ToggleButton endToggle = findViewById(R.id.toggleButtonEnd);
 
@@ -112,6 +114,35 @@ public class EditCalendarEvent extends AppCompatActivity {
         String startTime = eventStartTimeBox.getText().toString();
         String endDate = eventEndDateBox.getText().toString();
         String endTime = eventEndTimeBox.getText().toString();
+
+        if (name == null)
+        {
+            name = "";
+        }
+        if (description == null)
+        {
+            description = "";
+        }
+        if (location == null)
+        {
+            location = "";
+        }
+        if (startDate == null)
+        {
+            startDate = new Date().toString();
+        }
+        if (startTime == null)
+        {
+            startTime = "00:00";
+        }
+        if (endDate == null)
+        {
+            endDate = startDate;
+        }
+        if (endDate == null)
+        {
+            endTime = startTime;
+        }
 
         intent.putExtra("name", name);
         intent.putExtra("description", description);

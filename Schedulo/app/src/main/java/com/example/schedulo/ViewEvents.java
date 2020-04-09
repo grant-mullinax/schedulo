@@ -35,7 +35,17 @@ public class ViewEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_events);
-        CalendarEvent[] events = setupEvents(MainActivity.getInstance().getEvents());
+        CalendarEvent[] events = {};
+        try {
+            events = setupEvents(MainActivity.getInstance().getEvents());
+        }
+        catch (Exception e)
+        {
+            TextView failMessage = findViewById(R.id.failureMessage);
+            failMessage.setText("No Events found.");
+            System.out.println(e);
+        }
+
         CalendarAdapter adapter = new CalendarAdapter(this,
                 android.R.layout.simple_list_item_1, events);
         ListView listView = (ListView) findViewById(R.id.eventList);
@@ -78,6 +88,8 @@ public class ViewEvents extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         MainActivity.getInstance().deleteEvent(e, ctx);
+                        Intent intent = new Intent(ctx, MainActivity.class);
+                        startActivity(intent);
                     }
                 });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

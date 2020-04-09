@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/work"
+        android:title="Work Schedule" />
+
+    <item android:id="@+id/viewevent"
+        android:title="View Events"
+        android:onClick="ViewEvents"/>
+
+    <item android:id="@+id/manager"
+        android:title="Manager View" />
+
+    <item android:id="@+id/logout"
+        android:title="Log Out"
+        android:onClick="LogOut"/>
+
+</menu>

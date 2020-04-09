@@ -8,6 +8,8 @@
     <string name="register_prompt">Don\'t have an account?</string>
     <string name="button_addevent">Add Event</string>
     <string name="button_logout">Log Out</string>
+    <string name="button_deleteevent">Delete Event</string>
+    <string name="button_updateevent">Update Event</string>
     <string name="eventname_prompt">Name</string>
     <string name="eventlocation_prompt">Location</string>
     <string name="eventstart_prompt">From</string>
@@ -23,4 +25,6 @@
     <string name="button_send">Share Event</string>
     <string name="recipient_prompt">To</string>
     <string name="recipient_hint">user1, user2, etc.</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
