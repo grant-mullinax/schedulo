@@ -158,6 +158,19 @@ object Database {
         return eventStatement.executeUpdate()
     }
 
+    fun shareEvent(eventId: UUID, toUser: User): Int {
+        val connection = DriverManager.getConnection(connectionUrl)
+
+        val userEventStatement = connection.prepareStatement(
+            "INSERT INTO users_events (usr_id, event_id) VALUES (?, ?)"
+        )
+
+        userEventStatement.setString(1, toUser.id.toString())
+        userEventStatement.setString(2, eventId.toString())
+
+        return userEventStatement.executeUpdate()
+    }
+
     fun getEvents(): List<IdEvent> {
         return managedQuery(
             "SELECT * FROM events;"

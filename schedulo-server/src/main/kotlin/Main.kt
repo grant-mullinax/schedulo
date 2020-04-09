@@ -20,6 +20,8 @@ fun main(args: Array<String>) {
     app.delete("/events/:id", HttpRequestParser::deleteEvent)
     app.put("/events/:id", HttpRequestParser::editEvent)
 
+    app.put("/users/:username/:eventid", HttpRequestParser::shareEvent)
+
     app.exception(SQLException::class.java) { _, ctx ->
         ctx.status(500)
         ctx.html("Database error")

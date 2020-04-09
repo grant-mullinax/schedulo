@@ -64,6 +64,15 @@ object HttpRequestParser {
         ctx.json(Database.getEvent(id))
     }
 
+    fun shareEvent(ctx: Context) {
+        val user = getUserFromDetails(ctx)
+        val eventId = UUID.fromString(ctx.pathParam("eventid"))
+        val toUser = Database.getUser(ctx.pathParam("username")) ?: throw BadRequestResponse("User does not exist")
+
+        Database.shareEvent(eventId, toUser)
+        ctx.json(SimpleResponse("event shared"))
+    }
+
     fun getEvents(ctx: Context) {
         val user = getUserFromDetails(ctx)
         ctx.json(Database.getEventsForUser(user))
