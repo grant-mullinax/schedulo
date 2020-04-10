@@ -297,9 +297,11 @@ import java.util.Map;
 
     public void prev(View view) {
         compactCalendar.scrollLeft();
+        base.scrollLeft();
     }
 
     public void next(View view) {
         compactCalendar.scrollRight();
+        base.scrollRight();
     }
 }
