@@ -45,11 +45,12 @@ import java.util.Map;
     private static MainActivity instance = null;
 
     private List<CalendarEvent> events;
-    private String username, password, returnId, selectedDate;
+    private String username, password, returnId;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
     private SimpleDateFormat formatSelected = new SimpleDateFormat("MM/dd/yyyy");
     private TextView month;
     private boolean visible = true;
+    private Date selectedDate;
 
     private CompactCalendarView compactCalendar, base;
     private ImageButton prev;
@@ -123,17 +124,23 @@ import java.util.Map;
 
         month = findViewById(R.id.monthname);
         month.setText(dateFormatForMonth.format(compactCalendar.getFirstDayOfCurrentMonth()));
-        selectedDate = formatSelected.format(new Date());
+        selectedDate = new Date();
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
-                selectedDate = formatSelected.format(dateClicked);
+                selectedDate = dateClicked;
             }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
-                selectedDate = formatSelected.format(firstDayOfNewMonth);
+                if (selectedDate.before(firstDayOfNewMonth))
+                {
+                    base.scrollRight();
+                } else {
+                    base.scrollLeft();
+                }
+                selectedDate = firstDayOfNewMonth;
             }
         });
     }
@@ -280,7 +287,7 @@ import java.util.Map;
     public void AddCalendarEvent(View view) {
         Intent intent = new Intent(this, EditCalendarEvent.class);
         EditCalendarEvent.setFields(null);
-        intent.putExtra("date", selectedDate);
+        intent.putExtra("date", formatSelected.format(selectedDate));
         startActivity(intent);
     }
 
@@ -297,11 +304,9 @@ import java.util.Map;
 
     public void prev(View view) {
         compactCalendar.scrollLeft();
-        base.scrollLeft();
     }
 
     public void next(View view) {
         compactCalendar.scrollRight();
-        base.scrollRight();
     }
 }
