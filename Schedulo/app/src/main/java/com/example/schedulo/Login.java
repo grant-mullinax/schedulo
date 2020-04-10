@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
                         // action
                         System.out.println("\n\nERROR\n\n" + error.toString());
                         TextView textView = findViewById(R.id.textView3);
+                        textView.setVisibility(View.VISIBLE);
                         textView.setText("Invalid username or password.");
                     }
                 }) {

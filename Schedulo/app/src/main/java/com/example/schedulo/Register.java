@@ -70,6 +70,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             System.out.println("\n\nERROR\n\n" + error.toString());
+                            textView.setVisibility(View.VISIBLE);
                             textView.setText("Could not complete request at this time.");
                         }
                     }) {

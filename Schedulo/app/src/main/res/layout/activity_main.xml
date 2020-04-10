@@ -8,22 +8,21 @@
     tools:context=".MainActivity">
 
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/calendar"
         android:layout_width="fill_parent"
         android:layout_height="480dp"
-        app:compactCalendarTargetHeight="450dp"
-        app:compactCalendarTextSize="16sp"
+        android:paddingHorizontal="5dp"
+        android:paddingVertical="5dp"
         app:compactCalendarBackgroundColor="#fff"
-        app:compactCalendarTextColor="#000000"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
         app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
         app:compactCalendarMultiEventIndicatorColor="#fff"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:compactCalendarTargetHeight="450dp"
+        app:compactCalendarTextColor="#000000"
+        app:compactCalendarTextSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/add"
@@ -44,8 +43,9 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
         android:fitsSystemWindows="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:openDrawer="start">
 
         <com.google.android.material.navigation.NavigationView
