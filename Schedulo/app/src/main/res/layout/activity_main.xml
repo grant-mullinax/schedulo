@@ -10,7 +10,9 @@
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/calendar"
         android:layout_width="fill_parent"
-        android:layout_height="480dp"
+        android:layout_height="400dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:paddingHorizontal="5dp"
         android:paddingVertical="5dp"
         app:compactCalendarBackgroundColor="#fff"
@@ -20,24 +22,49 @@
         app:compactCalendarTargetHeight="450dp"
         app:compactCalendarTextColor="#000000"
         app:compactCalendarTextSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/drawer_layout"
+        app:layout_constraintVertical_bias="0.50" />
+
+    <ImageButton
+        android:id="@+id/prevbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/calendar"
+        app:layout_constraintTop_toTopOf="@+id/add"
+        app:srcCompat="@android:drawable/ic_media_previous" />
+
+    <ImageButton
+        android:id="@+id/nextbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/calendar"
+        app:layout_constraintTop_toTopOf="@+id/add"
+        app:srcCompat="@android:drawable/ic_media_next" />
 
     <Button
         android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="80dp"
         android:enabled="true"
         android:onClick="AddCalendarEvent"
         android:text="@string/button_addevent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/calendar" />
+
+    <TextView
+        android:id="@+id/monthname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/calendar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
@@ -55,6 +82,7 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:menu="@menu/sidebar" />
+
     </androidx.drawerlayout.widget.DrawerLayout>
 
 

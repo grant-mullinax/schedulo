@@ -1,17 +1,17 @@
 package com.example.schedulo;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,18 +24,17 @@ import com.android.volley.toolbox.Volley;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
-
-
-import static java.util.EnumSet.copyOf;
 
 
     public class MainActivity extends AppCompatActivity {
@@ -44,7 +43,9 @@ import static java.util.EnumSet.copyOf;
     private static MainActivity instance = null;
 
     private List<CalendarEvent> events;
-    private String username, password, returnId;
+    private String username, password, returnId, selectedDate;
+    private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
+    private SimpleDateFormat formatSelected = new SimpleDateFormat("mm/dd/yyyy");
 
     CompactCalendarView compactCalendar;
 
@@ -83,6 +84,36 @@ import static java.util.EnumSet.copyOf;
 
         compactCalendar =  (CompactCalendarView) findViewById(R.id.calendar);
         compactCalendar.setUseThreeLetterAbbreviation(true);
+        compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
+
+        final TextView month = findViewById(R.id.monthname);
+        month.setText(dateFormatForMonth.format(compactCalendar.getFirstDayOfCurrentMonth()));
+        compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
+            @Override
+            public void onDayClick(Date dateClicked) {
+                selectedDate = formatSelected.format(dateClicked);
+            }
+
+            @Override
+            public void onMonthScroll(Date firstDayOfNewMonth) {
+                month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
+            }
+        });
+
+        ImageButton prev = findViewById(R.id.prevbutton);
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compactCalendar.scrollLeft();
+            }
+        });
+        ImageButton next = findViewById(R.id.nextbutton);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compactCalendar.scrollRight();
+            }
+        });
 
     }
 
@@ -228,6 +259,7 @@ import static java.util.EnumSet.copyOf;
     public void AddCalendarEvent(View view) {
         Intent intent = new Intent(this, EditCalendarEvent.class);
         EditCalendarEvent.setFields(null);
+        intent.putExtra("date", selectedDate);
         startActivity(intent);
     }
 

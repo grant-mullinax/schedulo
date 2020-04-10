@@ -25,6 +25,7 @@ public class EditCalendarEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_calendar_event);
+        Intent intent = getIntent();
         if(event != null) {
             ((EditText) findViewById(R.id.eventNameBox)).setText(event.getName());
             ((EditText) findViewById(R.id.eventDescriptionBox)).setText(event.getDescription());
@@ -40,6 +41,12 @@ public class EditCalendarEvent extends AppCompatActivity {
             shareButton.setVisibility(View.VISIBLE);
         } else {
             id = null;
+            try {
+                ((EditText) findViewById(R.id.eventStartDateBox)).setText(intent.getStringExtra("date"));
+                ((EditText) findViewById(R.id.eventEndDateBox)).setText(intent.getStringExtra("date"));
+            } catch (Exception e) {
+
+            }
         }
     }
 
