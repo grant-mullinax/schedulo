@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,6 +21,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+import com.github.sundeepk.compactcalendarview.domain.Event;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,6 +46,7 @@ import java.util.Map;
     private String username, password, returnId, selectedDate;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
     private SimpleDateFormat formatSelected = new SimpleDateFormat("mm/dd/yyyy");
+    private TextView month;
 
     CompactCalendarView compactCalendar;
 
@@ -86,7 +87,7 @@ import java.util.Map;
         compactCalendar.setUseThreeLetterAbbreviation(true);
         compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
 
-        final TextView month = findViewById(R.id.monthname);
+        month = findViewById(R.id.monthname);
         month.setText(dateFormatForMonth.format(compactCalendar.getFirstDayOfCurrentMonth()));
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -99,22 +100,6 @@ import java.util.Map;
                 month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
             }
         });
-
-        ImageButton prev = findViewById(R.id.prevbutton);
-        prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                compactCalendar.scrollLeft();
-            }
-        });
-        ImageButton next = findViewById(R.id.nextbutton);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                compactCalendar.scrollRight();
-            }
-        });
-
     }
 
     @Override
@@ -272,5 +257,13 @@ import java.util.Map;
     public void ViewEvents(MenuItem item) {
         Intent intent = new Intent(MainActivity.this, ViewEvents.class);
         MainActivity.this.startActivity(intent);
+    }
+
+    public void prev(View view) {
+        compactCalendar.scrollLeft();
+    }
+
+    public void next(View view) {
+        compactCalendar.scrollRight();
     }
 }
