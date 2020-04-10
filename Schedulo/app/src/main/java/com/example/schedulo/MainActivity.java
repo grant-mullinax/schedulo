@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -45,10 +47,12 @@ import java.util.Map;
     private List<CalendarEvent> events;
     private String username, password, returnId, selectedDate;
     private SimpleDateFormat dateFormatForMonth = new SimpleDateFormat("MMM yyyy", Locale.getDefault());
-    private SimpleDateFormat formatSelected = new SimpleDateFormat("mm/dd/yyyy");
+    private SimpleDateFormat formatSelected = new SimpleDateFormat("MM/dd/yyyy");
     private TextView month;
+    private boolean visible = true;
 
-    CompactCalendarView compactCalendar;
+    CompactCalendarView compactCalendar, base;
+    ImageButton prev;
 
     private DrawerLayout sidebarLayout;
     private ActionBarDrawerToggle sidebarToggle;
@@ -75,17 +79,43 @@ import java.util.Map;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         sidebarLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-         sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close);
+        prev = findViewById(R.id.prevbutton);
 
-         sidebarLayout.addDrawerListener(sidebarToggle);
-         sidebarToggle.syncState();
+        sidebarLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close) {
+             @Override
+             public void onDrawerSlide(View drawerView, float slideOffset) {
+                 super.onDrawerSlide(drawerView, slideOffset);
+                 if (visible) {
+                     compactCalendar.setVisibility(View.INVISIBLE);
+                     prev.setVisibility(View.INVISIBLE);
+                 } else {
+                     compactCalendar.setVisibility(View.VISIBLE);
+                     prev.setVisibility(View.VISIBLE);
+                 }
+             }
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                visible = true;
+            }
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                visible = false;
+            }
+         };
+        sidebarLayout.addDrawerListener(sidebarToggle);
+        sidebarToggle.syncState();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         compactCalendar =  (CompactCalendarView) findViewById(R.id.calendar);
         compactCalendar.setUseThreeLetterAbbreviation(true);
         compactCalendar.setFirstDayOfWeek(Calendar.SUNDAY);
+        base = findViewById(R.id.calendar2);
+        base.setUseThreeLetterAbbreviation(true);
+        base.setFirstDayOfWeek(Calendar.SUNDAY);
 
         month = findViewById(R.id.monthname);
         month.setText(dateFormatForMonth.format(compactCalendar.getFirstDayOfCurrentMonth()));
