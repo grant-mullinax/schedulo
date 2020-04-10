@@ -51,8 +51,9 @@ import java.util.Map;
     private TextView month;
     private boolean visible = true;
 
-    CompactCalendarView compactCalendar, base;
-    ImageButton prev;
+    private CompactCalendarView compactCalendar, base;
+    private ImageButton prev;
+    private Button add;
 
     private DrawerLayout sidebarLayout;
     private ActionBarDrawerToggle sidebarToggle;
@@ -80,6 +81,7 @@ import java.util.Map;
         setContentView(R.layout.activity_main);
 
         prev = findViewById(R.id.prevbutton);
+        add = findViewById(R.id.add);
 
         sidebarLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         sidebarToggle = new ActionBarDrawerToggle(this, sidebarLayout, R.string.open, R.string.close) {
@@ -89,9 +91,11 @@ import java.util.Map;
                  if (visible) {
                      compactCalendar.setVisibility(View.INVISIBLE);
                      prev.setVisibility(View.INVISIBLE);
+                     add.setVisibility(View.INVISIBLE);
                  } else {
                      compactCalendar.setVisibility(View.VISIBLE);
                      prev.setVisibility(View.VISIBLE);
+                     add.setVisibility(View.VISIBLE);
                  }
              }
             @Override
@@ -119,6 +123,7 @@ import java.util.Map;
 
         month = findViewById(R.id.monthname);
         month.setText(dateFormatForMonth.format(compactCalendar.getFirstDayOfCurrentMonth()));
+        selectedDate = formatSelected.format(new Date());
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -128,6 +133,7 @@ import java.util.Map;
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
                 month.setText(dateFormatForMonth.format(firstDayOfNewMonth));
+                selectedDate = formatSelected.format(firstDayOfNewMonth);
             }
         });
     }

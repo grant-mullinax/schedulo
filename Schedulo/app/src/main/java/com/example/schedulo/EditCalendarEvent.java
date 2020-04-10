@@ -41,12 +41,8 @@ public class EditCalendarEvent extends AppCompatActivity {
             shareButton.setVisibility(View.VISIBLE);
         } else {
             id = null;
-            try {
-                ((EditText) findViewById(R.id.eventStartDateBox)).setText(intent.getStringExtra("date"));
-                ((EditText) findViewById(R.id.eventEndDateBox)).setText(intent.getStringExtra("date"));
-            } catch (Exception e) {
-
-            }
+            ((EditText) findViewById(R.id.eventStartDateBox)).setText(intent.getStringExtra("date"));
+            ((EditText) findViewById(R.id.eventEndDateBox)).setText(intent.getStringExtra("date"));
         }
     }
 
